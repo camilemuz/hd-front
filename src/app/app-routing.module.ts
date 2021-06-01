@@ -9,20 +9,25 @@ import {AuthGuard} from './guards/auth.guard';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {HomeComponent} from './components/home/home.component';
 import {SolicitudesComponent} from './components/solicitudes/solicitudes.component';
+import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
-      { path: 'solicitud', component: SolicitudComponent,  },
-      { path: 'solicitudes', component: SolicitudesComponent,  },
-      { path: 'registro', component: RegistroComponent },
+      { path: 'dashboard', component: DashboardComponent,  },      
+      { path: 'solicitud', component: SolicitudComponent,  },      
+      { path: 'listar-usuario', component: ListarUsuarioComponent,  },
+      // { path: 'editar-usuario/:id', component:EditarUsuarioComponent,  },
+      // { path: 'registro', component: RegistroComponent },
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'solicitud', pathMatch: 'full' },
     ],
     canActivate: [AuthGuard]
   },
+  { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NopagefoundComponent},
 ];

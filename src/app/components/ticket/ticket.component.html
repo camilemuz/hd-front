@@ -1,20 +1,18 @@
 <div class="jumbotron">
   <div class="container">
     <h2>Tickets</h2>
-    <button class="btn btn-success" (click)="general()">General</button>
-    <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button>
     <div class="row">
       <div class="col table-responsive">
-        <table class="table table-bordered table-sm">
-          <tr>
-            <th class="bg-info text-white">Numero</th>
-            <th class="bg-info text-white">Categoría</th>
-            <th class="bg-info text-white">Tipo Requerimiento</th>
-            <th class="bg-info text-white">Estado</th>
-            <th class="bg-info text-white">Asignado</th>
-            <th class="bg-info text-white">División</th>
-            <th class="bg-info text-white">Fecha Solicitud</th>
-            <th class="bg-info text-white">Acción</th>
+        <table class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
+          <tr id="firstrow">
+            <th scope="col">Numero</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Tipo Requerimiento</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Asignado</th>
+            <th scope="col">División</th>
+            <th scope="col">Fecha Solicitud</th>
+            <th scope="col">Acción</th>
           </tr>
           <tr *ngFor="let data of tickets">
             <td>{{ data.numero }}</td>
@@ -35,7 +33,7 @@
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header bg-success text-white">
+  <div class="modal-header  text-white"style="background-color: #ff9100;">
     <h4 class="modal-title">Detalle Ticket</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>

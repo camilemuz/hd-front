@@ -18,6 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { CalificacionPipe } from './pipes/calificacion.pipe';
+import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CalificacionPipe } from './pipes/calificacion.pipe';
     TicketComponent,
     HomeComponent,
     SolicitudesComponent,
-    CalificacionPipe
+    CalificacionPipe,
+    ListarUsuarioComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SolicitudService {
-  private url: string = 'http://localhost/help-back/public/api';
+  private url: string = 'http://localhost/mda/help-back/public/api';
 
   constructor(
     private http: HttpClient

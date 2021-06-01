@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class TicketService {
-  private url: string = 'http://localhost/help-back/public/api';
+  private url: string = 'http://localhost/mda/help-back/public/api';
   constructor(
     private http: HttpClient
   ) { }
