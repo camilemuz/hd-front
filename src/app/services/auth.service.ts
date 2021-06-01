@@ -44,6 +44,6 @@ export class AuthService {
     return this.http.post(this.url + '/recurso_usuario', cust);
   }
   public editarUsuario(cust:any,id:number){
-    return this.http.put(this.url+'/editar_usuario'+id,cust);
+    return this.http.put(this.url+'/editar_usuario/'+id,cust);
   }
 }

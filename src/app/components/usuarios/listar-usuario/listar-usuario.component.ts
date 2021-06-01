@@ -24,7 +24,7 @@ export class ListarUsuarioComponent implements OnInit {
     private router:Router,
     private auth:AuthService){
     comunRest.get('/parametros/usuarios').subscribe((data)=>{
-      console.log(data);
+      
       this.userList=data.data;
     });
   
@@ -53,15 +53,15 @@ export class ListarUsuarioComponent implements OnInit {
   //   }
   // }
   editUser(row:any,id: number) {
-    console.log('sss',row);
+    // console.log('sss',row);
     
 
-    // this.router.navigate(['/editar-usuario',id]);
-this.auth.editarUsuario(row,id).subscribe(show=>
-  {
-    console.log(show);
+     this.router.navigate(['/editar-usuario',id]);
+// this.auth.editarUsuario(row,id).subscribe(show=>
+//   {
+//     console.log(show);
     
-  })
+//   })
   }
 
 

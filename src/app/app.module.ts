@@ -20,6 +20,7 @@ import { SolicitudesComponent } from './components/solicitudes/solicitudes.compo
 import { CalificacionPipe } from './pipes/calificacion.pipe';
 import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EditarUsuarioComponent } from './components/usuarios/editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     SolicitudesComponent,
     CalificacionPipe,
     ListarUsuarioComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     BrowserModule,
