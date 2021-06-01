@@ -95,5 +95,3 @@ export class TicketComponent implements OnInit {
     this.tickets = this.ticketsAll;
   }
 }
-
-

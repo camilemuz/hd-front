@@ -1,10 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CargoModel } from 'src/app/models/cargo.model';
+import { DivisionModel } from 'src/app/models/division.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { SolicitudService } from 'src/app/services/solicitud.service';
 import { UserRestService } from 'src/app/services/user-rest.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -13,17 +18,36 @@ import { UserRestService } from 'src/app/services/user-rest.service';
 })
 export class EditarUsuarioComponent implements OnInit {
 
-  updateUser: FormGroup | any;
+  form: FormGroup | any;
   public usuario: UsuarioModel;
+  public cargos: CargoModel[] = [];
+  public divisiones: DivisionModel[] = [];
+  public submitted = false;
   @Input() data: any;
+  cargoList;
+  rolList;
+  private url='http://localhost/mda/help-back/api';
 
   constructor(
     private auth:AuthService,
     private route:ActivatedRoute,
     private userRest: UserRestService,
-    private router:Router
+    private router:Router,
+    private solicitudService:SolicitudService,
+    private formBuilder: FormBuilder,
+    http:HttpClient
 
-    ) { }
+    ) { 
+      http.get(this.url+'/parametros/cargo').subscribe((data)=>{
+        console.log(data);
+        this.cargoList=data;
+      });
+      http.get(this.url+'/parametros/rol').subscribe((data)=>{
+        console.log(data);
+        this.rolList=data;
+      });
+     }
+    
 
   ngOnInit(): void {
  let id=  this.route.snapshot.params.id;
@@ -33,7 +57,7 @@ export class EditarUsuarioComponent implements OnInit {
    (response)=>{
      console.log(response);
      
-     this.updateUser.patchValue({
+     this.form.patchValue({
       'nombre': response.data.nombre,
       'ap_paterno': response.data.ap_paterno,
       'ap_materno': response.data.ap_materno,
@@ -49,7 +73,7 @@ export class EditarUsuarioComponent implements OnInit {
   console.log(this.data);
 
 
-  this.updateUser = new FormGroup({
+  this.form = new FormGroup({
         'nombre': new FormControl(null, [Validators.required, Validators.minLength(3)]),
         'ap_paterno': new FormControl(null, [Validators.required, Validators.minLength(3)]),
         'ap_materno': new FormControl(null,[]),
@@ -62,18 +86,31 @@ export class EditarUsuarioComponent implements OnInit {
   });
 
    }
-   get nombre() { return this.updateUser.get('nombre'); }
-   get ap_paterno() { return this.updateUser.get('ap_paterno'); }
-   get ap_materno() { return this.updateUser.get('ap_materno'); }
-   get email() { return this.updateUser.get('email'); }
-   get rol_id_rol() { return this.updateUser.get('id_rol'); }
-   get cargo_id_cargo() { return this.updateUser.get('cargo_id_cargo'); }
-   get division_id_division() { return this.updateUser.get('division_id_division'); }
+   private cargaParametros() {
+    this.solicitudService.cargos().subscribe((res: any) => {
+      if (res.respuesta) {
+        this.cargos = res.cargos;
+      }
+    }    );
+    // this.solicitudService.divisiones().subscribe((res: any) => {
+    //   if (res.respuesta) {
+    //     this.divisiones = res.divisiones;
+    //   }
+    // }    );
+  }
+
+   get nombre() { return this.form.get('nombre'); }
+   get ap_paterno() { return this.form.get('ap_paterno'); }
+   get ap_materno() { return this.form.get('ap_materno'); }
+   get email() { return this.form.get('email'); }
+   get rol_id_rol() { return this.form.get('id_rol'); }
+   get cargo_id_cargo() { return this.form.get('cargo_id_cargo'); }
+   get division_id_division() { return this.form.get('division_id_division'); }
 
 
    updateUserDetails(){
     let id = this.route.snapshot.params.id;
-    this.userRest.updateUser(this.updateUser,id).subscribe(
+    this.userRest.updateUser(this.form,id).subscribe(
       (response) => {
         console.log(response),
         this.router.navigate(['/listar-usuario'])
@@ -82,7 +119,16 @@ export class EditarUsuarioComponent implements OnInit {
       () => console.log('completed')
     );
   }
-
+  get f() {
+    return this.form.controls;
+  }
+  // 
+  
+  
+  public limpiar() {
+    this.usuario = new UsuarioModel();
+    this.submitted = false;
+  }
   
    }
 

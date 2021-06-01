@@ -1,30 +1,43 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h2 class="text-center">Login</h2>
+<div class="body">
+  <div id="superconten">   
+   <div id="Contenedor">
+              <h1>MDA </h1>
+              <h2>Iniciar Sesión</h2>
+              <br>
+      <div class="ContentForm">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label>Email</label>
+           
             <input type="email" formControlName="email" class="form-control"
                    [(ngModel)]="usuario.email"
-                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                   placeholder="Ej. usuario@epsas.com" />
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email es requerido</div>
               <div *ngIf="f.email.errors.email">Email debe ser una dirección de correo electrónico válida</div>
             </div>
           </div>
           <div class="form-group">
-            <label>Password</label>
+            
             <input type="password" formControlName="password" class="form-control"
                    [(ngModel)]="usuario.password"
-                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }" 
+                   placeholder="Contraseña"/>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password es requerido</div>
             </div>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block" [disabled]="btnEntrar">Entrar</button>
+            <button class="btn btn-primary btn-block btn-large" [disabled]="btnEntrar">Entrar</button>
+            <br>
+						
+            <h3>¿No posee una cuenta?</h3>
+          
+          <div class="row">
+            
+            <button type="button"  routerLink="/registro"   class="btn1 btn1-primary btn1-block btn1-large">
+            Registrarse</button>
+          </div> 
           </div>
         </form>
       </div>

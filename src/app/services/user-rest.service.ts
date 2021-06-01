@@ -15,11 +15,11 @@ export class UserRestService {
   }
   
   editUser(id: number): Observable<any> {
-    return this.http.get(this.url+'/editar-usuario/'+id);
+    return this.http.get(this.url+'/editar_usuario/'+id);
   }
 
   updateUser(form:any,id:any): Observable<any> {
-    return this.http.put(this.url +'/editar-usuario/'+ id, form.value);
+    return this.http.put(this.url +'/editar_usuario/'+ id, form.value);
   }
 
   storeUser(form:any): Observable<any> {

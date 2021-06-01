@@ -12,11 +12,22 @@ import {SolicitudesComponent} from './components/solicitudes/solicitudes.compone
 import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditarUsuarioComponent } from './components/usuarios/editar-usuario/editar-usuario.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
+import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
+import { CategoriaComponent } from './components/configuracion/catalogo/categoria/categoria.component';
+import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
+
+      { path: 'cargo', component: CargoComponent,  }, 
+      { path: 'categoria', component: CategoriaComponent,  }, 
+      { path: 'departamento', component: DepartamentoComponent,  }, 
+      { path: 'municipio', component: MunicipioComponent,  }, 
+      { path: 'configuracion', component: ConfiguracionComponent,  },           
       { path: 'dashboard', component: DashboardComponent,  },      
       { path: 'solicitud', component: SolicitudComponent,  },      
       { path: 'solicitudes', component: SolicitudesComponent,  },      

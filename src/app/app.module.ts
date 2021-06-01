@@ -21,6 +21,11 @@ import { CalificacionPipe } from './pipes/calificacion.pipe';
 import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditarUsuarioComponent } from './components/usuarios/editar-usuario/editar-usuario.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { CategoriaComponent } from './components/configuracion/catalogo/categoria/categoria.component';
+import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
+import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
+import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { EditarUsuarioComponent } from './components/usuarios/editar-usuario/edi
     CalificacionPipe,
     ListarUsuarioComponent,
     DashboardComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    ConfiguracionComponent,
+    CategoriaComponent,
+    MunicipioComponent,
+    DepartamentoComponent,
+    CargoComponent
   ],
   imports: [
     BrowserModule,

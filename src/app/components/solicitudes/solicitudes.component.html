@@ -1,4 +1,4 @@
-<div class="jumbotron">
+
   <div class="container">
     <h2>Tickets</h2>
     <div class="row">
@@ -6,16 +6,16 @@
         <h3 class="text-danger">No hay solicitudes realizadas</h3>
       </div>
       <div class="col table-responsive" *ngIf="tickets.length != 0">
-        <table class="table table-bordered table-sm">
-          <tr>
-            <th class="bg-info text-white">Numero</th>
-            <th class="bg-info text-white">Categoría</th>
-            <th class="bg-info text-white">Tipo Requerimiento</th>
-            <th class="bg-info text-white">Estado</th>
-            <th class="bg-info text-white">Asignado</th>
-            <th class="bg-info text-white">División</th>
-            <th class="bg-info text-white">Fecha Solicitud</th>
-            <th class="bg-info text-white">Acción</th>
+        <table class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
+          <tr id="firstrow">
+            <th scope="col">Numero</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Tipo Requerimiento</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Asignado</th>
+            <th scope="col">División</th>
+            <th scope="col">Fecha Solicitud</th>
+            <th scope="col">Acción</th>
           </tr>
           <tr *ngFor="let data of tickets">
             <td>{{ data.numero }}</td>
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-</div>
+
 
 <ng-template #content let-modal>
   <div class="modal-header bg-success text-white">

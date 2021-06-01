@@ -1,1 +1,88 @@
-<p>editar-usuario works!</p>
+
+<div class="container">
+      <h2>Editar Usuario</h2>
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="form" (ngSubmit)="updateUserDetails()">
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Nombre <span class="text-danger">(*)</span>  </label>
+                <input type="hidden" name="_method" value="PUT">
+                <input type="text" name="nombre" id="nombre" class="form-control"
+                       
+                       formControlName="nombre"  style="text-transform:uppercase">
+                <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                  <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                    <label>Apellido Paterno <span class="text-danger">(*)</span>  </label>
+                    <input type="text" name="ap_paterno" id="ap_paterno" class="form-control"
+                        
+                        formControlName="ap_paterno"  style="text-transform:uppercase">
+                    <div *ngIf="submitted && f.ap_paterno.errors" class="invalid-feedback">
+                    <div *ngIf="f.ap_paterno.errors.required">Apellido Paterno es requerido</div>
+                    </div>
+            </div>
+                <div class="col-sm-4">
+                    <label>Apellido Materno</label>
+                    <input type="text" name="ap_materno" id="ap_materno" class="form-control"
+                        formControlName="ap_materno"  style="text-transform:uppercase">
+                </div>
+                
+            </div>
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Email<span class="text-danger">(*)</span></label>
+                <input type="email" name="email" id="email" class="form-control"
+                       
+                       formControlName="email" >
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email es requerido</div>
+                  <div *ngIf="f.email.errors.email">Email debe ser una dirección de correo electrónico válida</div>
+                </div>
+              </div>
+            </div>
+             
+             
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label for="cargo_id_cargo">Cargo <span class="text-danger">(*)</span></label>
+                <select name="cargo_id_cargo" id="cargo_id_cargo" class="form-control"
+                        
+                        formControlName="cargo_id_cargo" >
+                  <option *ngFor="let data of cargoList" [value]="data.id_cargo">{{ data.cargo }}</option>
+                </select>
+               
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-4">
+                  <label for="rol_id_rol">Rol <span class="text-danger">(*)</span></label>
+                  <select name="rol_id_rol" id="rol_id_rol" class="form-control"
+                          
+                          formControlName="rol_id_rol" >
+                    <option *ngFor="let data of rolList" [value]="data.rol">{{ data.cargo }}</option>
+                  </select>
+                 
+                </div>
+              </div>
+            <div class="form-row mt-2">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4 text-right">
+                <button class="btn btn-dark btn-lg" type="button" (click)="limpiar()">Limpiar</button>
+                <button class="btn btn-success btn-lg" type="submit" (click)="updateUserDetails()">Actualizar</button>
+              </div>
+            </div>
+
+         </form>
+        </div>
+    </div> 
+</div>
+
+
+    
+    
+ 
+  

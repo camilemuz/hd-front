@@ -9,7 +9,7 @@
               <label>Nombre <span class="text-danger">(*)</span>  </label>
               <input type="text" name="nombre" id="nombre" class="form-control"
                      [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"
-                     formControlName="nombre" [(ngModel)]="usuario.nombre" style="text-transform:uppercase">
+                     formControlName="nombre"  style="text-transform:uppercase">
               <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
                 <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
               </div>
@@ -76,12 +76,12 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4"></div>
             <div class="col-sm-4 text-right">
-              <button class="btn btn-dark btn-lg" type="button" (click)="limpiar()">Limpiar</button>
-              <button class="btn btn-success btn-lg" type="submit">Enviar</button>
+              <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
+              <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Enviar</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>
+

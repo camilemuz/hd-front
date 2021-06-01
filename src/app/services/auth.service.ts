@@ -15,6 +15,7 @@ export class AuthService {
   ];
   public menuAgente = [
     { url: '/home', titulo: 'Home' },
+    { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/ticket', titulo: 'Ticket' }
   ];
   public menuAdmin = [
@@ -24,6 +25,7 @@ export class AuthService {
     { url: '/listar-usuario', titulo: 'Usuario' },
     // { url: '/configuracion', titulo: 'Configuración' },
     { url: '/dashboard', titulo: 'Dashboard' },
+    { url: '/configuracion', titulo: 'Configuración' },
     { url: '/registro', titulo: 'Registro' },
   ];
 
