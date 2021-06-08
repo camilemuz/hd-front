@@ -26,6 +26,7 @@ export class AuthService {
     { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
     { url: '/dashboard', titulo: 'Dashboard' },
+    { url: '/configuracion', titulo: 'Configuración' },
   ];
 
   constructor(

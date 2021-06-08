@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SolicitudService} from '../../services/solicitud.service';
-import {Categoria} from '../../models/categoria.model';
+import {CategoriaModel} from '../../models/categoria.model';
 import {Solicitud} from '../../models/solicitud.model';
 import {TipoRequerimiento} from '../../models/tipoRequerimiento.model';
 import {Municipio} from '../../models/municipio.model';
@@ -15,7 +15,7 @@ import {Departamento} from '../../models/departamento.model';
   styleUrls: ['./solicitud.component.css']
 })
 export class SolicitudComponent implements OnInit {
-  public categorias: Categoria[] = [];
+  public categorias: CategoriaModel[] = [];
   public solicitud: Solicitud;
   public tipoRequerimientos: TipoRequerimiento[] = [];
   public municipios: Municipio[] = [];
