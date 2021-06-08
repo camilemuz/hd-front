@@ -14,4 +14,5 @@ export class TicketModel {
   calificacion: string;
   departamento: string;
   sucursal: string;
+  usuario_requerimiento: string;
 }

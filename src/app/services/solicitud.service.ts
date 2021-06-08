@@ -40,6 +40,10 @@ export class SolicitudService {
     return this.http.get(this.url + '/parametros/cargo');
   }
 
+  public roles (): Observable<any>{
+    return this.http.get(this.url + '/parametros/rol');
+  }
+
   public guardarSolicitud(cust: any): Observable<any>{
     return this.http.post(this.url + '/funcionario/solicitar_req', cust);
   }

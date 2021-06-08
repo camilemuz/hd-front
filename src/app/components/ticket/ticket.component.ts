@@ -35,23 +35,13 @@ export class TicketComponent implements OnInit {
   }
 
   public detalle(id: number, content){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      idTicket: id
-    };
-    this.ticketService.elegir(cust).subscribe((resp: any) => {
-      if (resp.respuesta){
-        this.usuarioTicket = resp.usuario;
-        this.fechaTicket = resp.fechaTicket;
-        this.tiket = new TicketModel();
-        this.tickets.forEach((value) => {
-          if (value.id_ticket == id) {
-            this.tiket = value;
-          }
-        });
-        this.modalService.open(content, { size: 'lg' });
+    this.tiket = new TicketModel();
+    this.tickets.forEach((value) => {
+      if (value.id_ticket == id) {
+        this.tiket = value;
       }
     });
+    this.modalService.open(content, { size: 'lg' });
   }
 
   public tomarTicket(id: number){
@@ -95,3 +85,5 @@ export class TicketComponent implements OnInit {
     this.tickets = this.ticketsAll;
   }
 }
+
+

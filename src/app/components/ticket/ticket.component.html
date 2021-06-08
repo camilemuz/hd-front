@@ -1,6 +1,7 @@
 
   <div class="container">
     <h2>Tickets</h2>
+    <hr>
     <button class="btn btn-success" (click)="general()">General</button>
     <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button>
     <div class="row">
@@ -35,7 +36,7 @@
 
 
 <ng-template #content let-modal>
-  <div class="modal-header bg-success text-white" >
+  <div class="modal-header bg-success text-white">
     <h4 class="modal-title">Detalle Ticket</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -45,7 +46,8 @@
     <div class="row">
       <div class="col-sm-6">
         <h4>{{ tiket.sub_cat }} #{{ tiket.numero }}</h4>
-        <h5>Descripción: <br><small>{{ tiket.descripcion }}</small></h5>
+        <h5>Descripción: <br></h5>
+        <textarea rows="4" disabled class="form-control">{{ tiket.descripcion }}</textarea>
       </div>
       <div class="col-sm-6">
         <h5>Categoria: <small>{{ tiket.categoria }}</small></h5>
@@ -58,19 +60,23 @@
     <hr>
     <div class="row">
       <div class="col-sm-8">
-        <h4  *ngIf="tiket.estado == 'En Espera'">Ticket abierto por: {{ usuarioTicket }}</h4>
-        <h4  *ngIf="tiket.estado == 'En Proceso'">Ticket procesado por: {{ usuarioTicket }}</h4>
-        <h4  *ngIf="tiket.estado == 'Cerrado'">Ticket terminado por: {{ usuarioTicket }}</h4>
-        <h5>Fecha: {{ fechaTicket }}</h5>
-        <hr>
-        <h4>Solicitud</h4>
-        <h5>Fecha: {{ tiket.fecha_solicitud  | date:"dd/MM/yyyy" }}</h5>
+        <h4>Ticket</h4>
+        <h5 *ngIf="tiket.estado == 'En Proceso'">Ticket procesado por: {{ tiket.usuario }}</h5>
+        <h5 *ngIf="tiket.estado == 'Cerrado'">Ticket terminado por: {{ tiket.usuario }}</h5>
+        <h5>Fecha: {{ tiket.fecha_ticket |  date:"dd/MM/yyyy h:mm:ss" }}</h5>
       </div>
       <div class="col-sm-4">
         <button class="btn btn-success" (click)="tomarTicket(tiket.id_ticket)" *ngIf="tiket.estado == 'En Espera'">Tomar</button>
         <button class="btn btn-success" (click)="terminarTicket(tiket.id_ticket)" *ngIf="tiket.estado == 'En Proceso'">Terminar</button>
-
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h4>Solicitud</h4>
+        <h5>Solicitado por: {{ tiket.usuario_requerimiento }}</h5>
+        <h5>Fecha: {{ tiket.fecha_solicitud  | date:"dd/MM/yyyy h:mm:ss" }}</h5>
       </div>
     </div>
   </div>

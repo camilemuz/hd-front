@@ -18,14 +18,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { CalificacionPipe } from './pipes/calificacion.pipe';
-import { ListarUsuarioComponent } from './components/usuarios/listar-usuario/listar-usuario.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EditarUsuarioComponent } from './components/usuarios/editar-usuario/editar-usuario.component';
-import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
-import { CategoriaComponent } from './components/configuracion/catalogo/categoria/categoria.component';
-import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
-import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
-import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
+import {IndexComponent} from './components/usuarios/index/index.component';
+import { RolPipe } from './pipes/rol.pipe';
+import { CargoPipe } from './pipes/cargo.pipe';
+import { DivisionPipe } from './pipes/division.pipe';
 
 @NgModule({
   declarations: [
@@ -42,14 +38,10 @@ import { CargoComponent } from './components/configuracion/parametros/cargo/carg
     HomeComponent,
     SolicitudesComponent,
     CalificacionPipe,
-    ListarUsuarioComponent,
-    DashboardComponent,
-    EditarUsuarioComponent,
-    ConfiguracionComponent,
-    CategoriaComponent,
-    MunicipioComponent,
-    DepartamentoComponent,
-    CargoComponent
+    IndexComponent,
+    RolPipe,
+    CargoPipe,
+    DivisionPipe
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {UsuarioModel} from '../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,9 @@ export class AuthService {
     { url: '/home', titulo: 'Home' },
     { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/ticket', titulo: 'Ticket' },
-    { url: '/listar-usuario', titulo: 'Usuario' },
-    // { url: '/configuracion', titulo: 'Configuración' },
-    { url: '/dashboard', titulo: 'Dashboard' },
-    { url: '/configuracion', titulo: 'Configuración' },
     { url: '/registro', titulo: 'Registro' },
+    { url: '/listado', titulo: 'Usuarios' },
+    { url: '/dashboard', titulo: 'Dashboard' },
   ];
 
   constructor(
@@ -45,7 +44,15 @@ export class AuthService {
   public recursoUsuario(cust: any): Observable<any>{
     return this.http.post(this.url + '/recurso_usuario', cust);
   }
-  public editarUsuario(cust:any,id:number){
-    return this.http.put(this.url+'/editar_usuario/'+id,cust);
+
+  public index(cust){
+    return this.http.post(this.url + '/admin/index', cust);
   }
+  public store(id: number, usuario: UsuarioModel){
+    return this.http.put(this.url + '/admin/store/' + id, usuario);
+  }
+  public eliminar(usuario: UsuarioModel){
+    return this.http.post(this.url + '/admin/eliminar', usuario);
+  }
+
 }
