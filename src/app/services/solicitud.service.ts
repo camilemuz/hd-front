@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { CategoriaModel } from '../models/categoria.model';
+import { Departamento } from '../models/departamento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,18 @@ export class SolicitudService {
 
   public departamentos (): Observable<any>{
     return this.http.get(this.url + '/parametros/departamento');
+  }
+
+  public indexDpto(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexdpto',cust);
+  }
+
+  public editarDpto(id: number, departamento: Departamento): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatedpto/'+ id, departamento);
+  }
+
+  public eliminarDpto( departamento: Departamento): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminardepto',departamento);
   }
 
   public divisiones (): Observable<any>{

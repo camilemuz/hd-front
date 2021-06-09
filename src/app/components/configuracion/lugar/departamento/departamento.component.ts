@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Departamento } from 'src/app/models/departamento.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-departamento',
@@ -10,29 +12,93 @@ import { SolicitudService } from 'src/app/services/solicitud.service';
 })
 export class DepartamentoComponent implements OnInit {
   public departamentos: Departamento[] = [];
+  public departamento: Departamento;
+  public submitted=false;
+  public form:FormGroup;
   
   constructor(
     private parametroService:SolicitudService,
-    private router:Router
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    this.parametroService.departamentos().subscribe((resp: any) => {
+    this.index();
+    this.form = this.formBuilder.group({
+      departamento: [null, Validators.required],
+      cod: [null, Validators.required],
+    
+    });
+  }
+ 
+  get f(){
+    return this.form.controls;
+  }
+
+  private index(){
+    let cust = {
+      email: localStorage.getItem('usuario'),
+      token: localStorage.getItem('token')
+    }
+     this.parametroService.indexDpto(cust).subscribe((resp: any) => {
       if (resp.respuesta){
         this.departamentos = resp.departamentos;
       }
     });
   }
-  editUser(row:any,id: number) {
-    // console.log('sss',row);
-    
 
-     this.router.navigate(['/editar-usuario',id]);
-// this.auth.editarUsuario(row,id).subscribe(show=>
-//   {
-//     console.log(show);
-    
-//   })
-  }
+  private accionEditar(content: any,departamento:Departamento){
+
+    this.departamento=new Departamento();
+    this.departamento=departamento;
+    this.modalService.open(content,{size:'lg'});
 
   }
+
+  public registrar(){
+    this.submitted=true;
+    if(this.form.invalid){
+      Swal.fire(
+        'Falta',
+        'Tiene marcados los campos que faltan',
+        'warning'
+      );
+      return;
+    }
+    
+    this.parametroService.editarDpto(this.departamento.id_departamento,this.departamento).subscribe((resp:any)=>{
+      if(resp.respuesta){
+        this.modalService.dismissAll();
+        this.index();
+        
+        
+      }
+    })
+    
+  }
+
+
+  public eliminar(departamento: Departamento){
+    console.log(departamento);
+    Swal.fire({
+      title: '¿Está seguro de eliminar el registro?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Eliminar`,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        this.parametroService.eliminarDpto(departamento).subscribe((resp: any) => {
+          if (resp.respuesta){
+            Swal.fire(resp.mensaje, '', 'success');
+            this.index();
+          }else{
+            Swal.fire('Cancelado', '', 'info')
+          }
+        })
+      }
+    })
+  }
+}
+  

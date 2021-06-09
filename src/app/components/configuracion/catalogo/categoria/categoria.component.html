@@ -16,15 +16,15 @@
             <table  class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
                 <tr id="firstrow">
                     
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">cod</th>
                     <th scope="col">Nombre Categoría</th>
                     <th scope="col">Acción</th>
                 </tr>
     
-                <tr *ngFor="let row of categorias">
+                <tr *ngFor="let row of categorias;let index=index">
                     
-                    <td>{{row.id_categoria}}</td>
+                    <td>{{index +1}}</td>
                     <td>{{row.cod}}</td>
                     <td>{{row.categoria}}</td>
                    

@@ -16,23 +16,22 @@
             <table  class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
                 <tr id="firstrow">
                     
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">cod</th>
-                    <th scope="col">Nombre Municipio</th>
+                    <th scope="col">Nombre Departamento</th>
                     <th scope="col">Acción</th>
                 </tr>
     
-                <tr *ngFor="let row of departamentos">
+                <tr *ngFor="let row of departamentos; let index=index">
                     
-                    <td>{{row.id_departamento}}</td>
+                    <td>{{ index + 1}}</td>
                     <td>{{row.cod}}</td>
                     <td>{{row.departamento}}</td>
                    
                     <td>
                         <div>
-                            <a (click)="editUser(row,row.id_usuario)"  class="btn btn-warning btn-sm">Editar</a>
-                            <!-- &nbsp;
-                            <a (click)="editUser(row.id)" class="btn btn-danger btn-sm">Eliminar</a> -->
+                            <button class="btn btn-warning btn-sm" (click)="accionEditar(content, row)">Editar</button>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(row)">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -43,5 +42,48 @@
         </div>
     
     
-       
+        <ng-template #content let-modal>
+            <div class="modal-header bg-success text-white">
+                  <h4 class="modal-title">Editar Departamento</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="registrar()">
+                    <div class="form-row">
+                      <div class="col-sm-4">
+                        <label>Nombre Departamento <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="departamento" id="departamento" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.departamento.errors }"
+                               formControlName="departamento" [(ngModel)]="departamento.departamento" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.departamento.errors" class="invalid-feedback">
+                          <div *ngIf="f.departamento.errors.required">Departamento es requerido</div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Código <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="cod" id="cod" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
+                               formControlName="cod" [(ngModel)]="departamento.cod" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                          <div *ngIf="f.cod.errors.required">Código es requerido</div>
+                        </div>
+                      </div>
+                    </div> 
+                      
+                        <div class="form-row mt-2">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 text-right">
+                            <button class="btn btn-success btn-lg" type="submit">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+             </div>
+        </ng-template>
+        
+        
+           
+            
     

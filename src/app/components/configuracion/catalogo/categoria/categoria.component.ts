@@ -44,6 +44,7 @@ export class CategoriaComponent implements OnInit {
       token: localStorage.getItem('token')
     }
      this.parametroService.indexcat(cust).subscribe((resp: any) => {
+      console.log('-->',resp);
       
       if (resp.respuesta){
         this.categorias = resp.categorias;
