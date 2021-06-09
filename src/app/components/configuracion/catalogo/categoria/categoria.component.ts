@@ -39,7 +39,12 @@ export class CategoriaComponent implements OnInit {
   }
 
   private index(){
-     this.parametroService.categorias().subscribe((resp: any) => {
+    let cust = {
+      email: localStorage.getItem('usuario'),
+      token: localStorage.getItem('token')
+    }
+     this.parametroService.indexcat(cust).subscribe((resp: any) => {
+      
       if (resp.respuesta){
         this.categorias = resp.categorias;
       }
