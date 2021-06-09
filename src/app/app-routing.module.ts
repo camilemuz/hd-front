@@ -10,12 +10,12 @@ import {TicketComponent} from './components/ticket/ticket.component';
 import {HomeComponent} from './components/home/home.component';
 import {SolicitudesComponent} from './components/solicitudes/solicitudes.component';
 import {IndexComponent} from './components/usuarios/index/index.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoriaComponent } from './components/configuracion/catalogo/categoria/categoria.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
 import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
 import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
-import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '',
@@ -37,8 +37,6 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
-  
- 
   { path: 'login', component: LoginComponent },
   { path: '**', component: NopagefoundComponent},
 ];

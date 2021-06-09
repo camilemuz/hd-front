@@ -3,6 +3,8 @@ import {TicketService} from '../../services/ticket.service';
 import {TicketModel} from '../../models/ticket.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import {TicketHistoricoModel} from '../../models/ticketHistorico.model';
+import {RequerimientoModel} from '../../models/requerimiento.model';
 
 @Component({
   selector: 'app-solicitudes',
@@ -13,6 +15,8 @@ export class SolicitudesComponent implements OnInit {
   public tickets: TicketModel[] = [];
   public radio: number;
   public idTicket: number;
+  public ticketHistorico: TicketHistoricoModel[] = [];
+  public requerimiento: RequerimientoModel;
 
   constructor(
     private ticketService: TicketService,
@@ -81,6 +85,21 @@ export class SolicitudesComponent implements OnInit {
           title: 'Alerta',
           text: resp.mensaje,
         });
+      }
+    });
+  }
+
+  public historial(numero: number, content){
+    let cust = {
+      email: localStorage.getItem('usuario'),
+      token: localStorage.getItem('token'),
+      numero: numero
+    }
+    this.ticketService.historial(cust).subscribe((resp: any) => {
+      if (resp.respuesta){
+        this.ticketHistorico = resp.tickets;
+        this.requerimiento = resp.requerimiento;
+        this.modalService.open(content, { size: 'lg' });
       }
     });
   }

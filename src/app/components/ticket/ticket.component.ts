@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {TicketService} from '../../services/ticket.service';
 import {TicketModel} from '../../models/ticket.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {TicketHistoricoModel} from '../../models/ticketHistorico.model';
+import {RequerimientoModel} from '../../models/requerimiento.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ticket',
@@ -11,10 +14,10 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class TicketComponent implements OnInit {
   public tickets: TicketModel[] = [];
   public ticketsAll: TicketModel[] = [];
-  public ticketsTec: TicketModel[] = [];
   public tiket: TicketModel;
-  public usuarioTicket: string;
-  public fechaTicket: string;
+  public ticketHistorico: TicketHistoricoModel[] = [];
+  public requerimiento: RequerimientoModel;
+  public ver: boolean = false;
 
   constructor(
     private ticketService: TicketService,
@@ -29,7 +32,12 @@ export class TicketComponent implements OnInit {
     this.ticketService.listado().subscribe((resp: any) => {
       if (resp.respuesta){
         this.ticketsAll = resp.tickets;
-        this.tickets = resp.tickets;
+        this.ticketsAll.forEach((value) => {
+          // @ts-ignore
+          if (value.estado_id_estado != 3){
+            this.tickets.push(value);
+          }
+        });
       }
     });
   }
@@ -45,29 +53,62 @@ export class TicketComponent implements OnInit {
   }
 
   public tomarTicket(id: number){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      idTicket: id
-    };
-    this.ticketService.tomar(cust).subscribe((resp: any) => {
-      if (resp.respuesta){
-        this.listado();
-        this.modalService.dismissAll();
+    Swal.fire({
+      title: 'Enviar un comentario',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Tomar',
+      cancelButtonText: 'Cancelar',
+      showLoaderOnConfirm: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let cust = {
+          email: localStorage.getItem('usuario'),
+          idTicket: id,
+          token: localStorage.getItem('token'),
+          comentario: result.value
+        };
+        this.ticketService.tomar(cust).subscribe((resp: any) => {
+          if (resp.respuesta){
+            this.listado();
+            this.modalService.dismissAll();
+          }
+        });
       }
-    });
+    })
+
   }
 
   public terminarTicket(id: number){
-    let cust = {
-      idTicket: id,
-      email: localStorage.getItem('usuario')
-    };
-    this.ticketService.terminar(cust).subscribe((resp: any) => {
-      if (resp.respuesta){
-        this.listado();
-        this.modalService.dismissAll();
+    Swal.fire({
+      title: 'Enviar un comentario',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Tomar',
+      cancelButtonText: 'Cancelar',
+      showLoaderOnConfirm: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let cust = {
+          email: localStorage.getItem('usuario'),
+          idTicket: id,
+          token: localStorage.getItem('token'),
+          comentario: result.value
+        };
+        this.ticketService.terminar(cust).subscribe((resp: any) => {
+          if (resp.respuesta){
+            this.listado();
+            this.modalService.dismissAll();
+          }
+        });
       }
-    });
+    })
   }
 
   public tecnologia(){
@@ -83,6 +124,38 @@ export class TicketComponent implements OnInit {
   public general(){
     this.tickets = [];
     this.tickets = this.ticketsAll;
+  }
+
+  public historial(numero: number, content){
+    let cust = {
+      email: localStorage.getItem('usuario'),
+      token: localStorage.getItem('token'),
+      numero: numero
+    }
+    this.ticketService.historial(cust).subscribe((resp: any) => {
+      if (resp.respuesta){
+        this.ticketHistorico = resp.tickets;
+        this.requerimiento = resp.requerimiento;
+        this.modalService.open(content, { size: 'lg' });
+      }
+    });
+  }
+
+  public verTodos(){
+    this.ver = !this.ver;
+    console.log(this.ver);
+    this.tickets = [];
+    if (!this.ver){
+      this.ticketsAll.forEach((value) => {
+        // @ts-ignore
+        if (value.estado_id_estado != 3){
+          this.tickets.push(value);
+        }
+      });
+    }else{
+      this.tickets = this.ticketsAll;
+    }
+
   }
 }
 

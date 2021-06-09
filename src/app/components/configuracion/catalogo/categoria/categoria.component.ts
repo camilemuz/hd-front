@@ -47,6 +47,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   private accionEditar(content: any,categoria:CategoriaModel){
+
     this.categoria=new CategoriaModel();
     this.categoria=categoria;
     this.modalService.open(content,{size:'lg'});
@@ -87,7 +88,7 @@ export class CategoriaComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        this.parametroService.elimunarcategoria(categoria).subscribe((resp: any) => {
+        this.parametroService.eliminarcategoria(categoria).subscribe((resp: any) => {
           if (resp.respuesta){
             Swal.fire(resp.mensaje, '', 'success');
             this.index();

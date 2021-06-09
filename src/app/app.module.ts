@@ -22,11 +22,12 @@ import {IndexComponent} from './components/usuarios/index/index.component';
 import { RolPipe } from './pipes/rol.pipe';
 import { CargoPipe } from './pipes/cargo.pipe';
 import { DivisionPipe } from './pipes/division.pipe';
+import { EstadoPipe } from './pipes/estado.pipe';
 import { CategoriaComponent } from './components/configuracion/catalogo/categoria/categoria.component';
-import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
 import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
-import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
     RolPipe,
     CargoPipe,
     DivisionPipe,
+    EstadoPipe,
     CategoriaComponent,
     MunicipioComponent,
     CargoComponent,

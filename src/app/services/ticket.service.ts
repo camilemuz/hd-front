@@ -34,4 +34,8 @@ export class TicketService {
   public terminar(cust: any){
     return this.http.post(`${this.url}/agente/terminar_ticket`, cust);
   }
+
+  public historial(cust: any){
+    return this.http.post(`${this.url}/agente/historico`, cust);
+  }
 }

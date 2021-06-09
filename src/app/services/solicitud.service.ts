@@ -18,10 +18,10 @@ export class SolicitudService {
   }
 
   public editarcategoria(id: number, categoria: CategoriaModel): Observable<any>{
-    return this.http.put(this.url + '/parametros/storecat'+ id, categoria);
+    return this.http.put(this.url + '/parametros/updatecat/'+ id, categoria);
   }
 
-  public elimunarcategoria( categoria: CategoriaModel): Observable<any>{
+  public eliminarcategoria( categoria: CategoriaModel): Observable<any>{
     return this.http.post(this.url + '/parametros/eliminarcat',categoria);
   }
 

@@ -30,7 +30,7 @@
                    
                     <td>
                         <div>
-                            <button class="btn btn-warning btn-sm" (click)="accionEditar(content, data)">Editar</button>
+                            <button class="btn btn-warning btn-sm" (click)="accionEditar(content, row)">Editar</button>
                             <button class="btn btn-danger btn-sm" (click)="eliminar(data)">Eliminar</button>
                         </div>
                     </td>
@@ -56,7 +56,7 @@
                     <label>Nombre Categoría <span class="text-danger">(*)</span>  </label>
                     <input type="text" name="categoria" id="categoria" class="form-control"
                            [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }"
-                           formControlName="categoria" [(ngModel)]="categorias.categoria" style="text-transform:uppercase">
+                           formControlName="categoria" [(ngModel)]="categoria.categoria" style="text-transform:uppercase">
                     <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
                       <div *ngIf="f.categorias.errors.required">Categoría es requerido</div>
                     </div>
@@ -65,7 +65,7 @@
                     <label>Código <span class="text-danger">(*)</span>  </label>
                     <input type="text" name="cod" id="cod" class="form-control"
                            [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
-                           formControlName="cod" [(ngModel)]="categorias.cod" style="text-transform:uppercase">
+                           formControlName="cod" [(ngModel)]="categoria.cod" style="text-transform:uppercase">
                     <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
                       <div *ngIf="f.cod.errors.required">Código es requerido</div>
                     </div>
