@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { CategoriaModel } from '../models/categoria.model';
 import { Departamento } from '../models/departamento.model';
+import { Municipio } from '../models/municipio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,27 @@ export class SolicitudService {
     return this.http.post(this.url + '/parametros/eliminarcat',categoria);
   }
 
+
   public requerimientos (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/tipo_requerimiento/' + id);
   }
 
+
   public municipios (): Observable<any>{
     return this.http.get(this.url + '/parametros/municipio');
   }
+  public indexmunicipio(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexmun',cust);
+  }
+
+  public editarmunicipio(id: number, municipio: Municipio): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatemun/'+ id, municipio);
+  }
+
+  public eliminarmunicipio( municipio: Municipio): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminarmun',municipio);
+  }
+
 
   public sucursales (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/sucursal/' + id);

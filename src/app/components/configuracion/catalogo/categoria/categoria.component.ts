@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
@@ -22,7 +21,7 @@ export class CategoriaComponent implements OnInit {
     private parametroService:SolicitudService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private router:Router
+    
   ) { }
 
   ngOnInit(): void {
