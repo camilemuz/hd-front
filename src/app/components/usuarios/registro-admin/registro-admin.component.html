@@ -1,0 +1,104 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Registro Usuario</h2>
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="form" (ngSubmit)="registrar()">
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Nombre <span class="text-danger">(*)</span>  </label>
+                <input type="text" name="nombre" id="nombre" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"
+                       formControlName="nombre" [(ngModel)]="usuario.nombre" style="text-transform:uppercase">
+                <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                  <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>Apellido Paterno <span class="text-danger">(*)</span>  </label>
+                <input type="text" name="ap_paterno" id="ap_paterno" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.ap_paterno.errors }"
+                       formControlName="ap_paterno" [(ngModel)]="usuario.ap_paterno" style="text-transform:uppercase">
+                <div *ngIf="submitted && f.ap_paterno.errors" class="invalid-feedback">
+                  <div *ngIf="f.ap_paterno.errors.required">Apellido Paterno es requerido</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>Apellido Materno</label>
+                <input type="text" name="ap_materno" id="ap_materno" class="form-control"
+                       formControlName="ap_materno" [(ngModel)]="usuario.ap_materno" style="text-transform:uppercase">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Email<span class="text-danger">(*)</span></label>
+                <input type="email" name="email" id="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                       formControlName="email" [(ngModel)]="usuario.email">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email es requerido</div>
+                  <div *ngIf="f.email.errors.email">Email debe ser una dirección de correo electrónico válida</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>Password<span class="text-danger">(*)</span></label>
+                <input type="password" name="password" id="password" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                       formControlName="password" [(ngModel)]="usuario.password" >
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password es requerido</div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>Repite Password<span class="text-danger">(*)</span></label>
+                <input type="password" name="password2" id="password2" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
+                       formControlName="password2"  [(ngModel)]="usuario.password2">
+                <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                  <div *ngIf="f.password2.errors.required">Repetir la contraseña</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-4">
+                  <label for="rol">Rol <span class="text-danger">(*)</span></label>
+                  <select name="rol" id="rol" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.rol.errors }"
+                          formControlName="rol" [(ngModel)]="usuario.rol_id_rol">
+                    <option *ngFor="let data of roles" [value]="data.id_rol">{{ data.rol }}</option>
+                  </select>
+                  <label for="division">División <span class="text-danger">(*)</span></label>
+                  <select name="division" id="division" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.division.errors }"
+                          formControlName="division" [(ngModel)]="usuario.division_id_division">
+                    <option *ngFor="let data of divisiones" [value]="data.id_division">{{ data.division }}</option>
+                  </select>
+                </div>
+              </div>
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label for="cargo">Cargo <span class="text-danger">(*)</span></label>
+                <select name="cargo" id="cargo" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.cargo.errors }"
+                        formControlName="cargo" [(ngModel)]="usuario.cargo_id_cargo">
+                  <option *ngFor="let data of cargos" [value]="data.id_cargo">{{ data.cargo }}</option>
+                </select>
+                <div *ngIf="submitted && f.cargo.errors" class="invalid-feedback">
+                  <div *ngIf="f.cargo.errors.required">Repetir la contraseña</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mt-2">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4 text-right">
+                <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
+                <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

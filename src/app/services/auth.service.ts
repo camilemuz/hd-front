@@ -23,7 +23,7 @@ export class AuthService {
     { url: '/home', titulo: 'Home' },
     { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/ticket', titulo: 'Ticket' },
-    { url: '/registro', titulo: 'Registro' },
+    // { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
     { url: '/dashboard', titulo: 'Dashboard' },
     { url: '/configuracion', titulo: 'Configuración' },
@@ -36,6 +36,10 @@ export class AuthService {
 
   public guardarUsuario(cust: any): Observable<any>{
     return this.http.post(this.url + '/registro', cust);
+  }
+
+  public crearUsuarioAdmin(cust: any): Observable<any>{
+    return this.http.post(this.url + '/admin/registroAdmin', cust);
   }
 
   public entrarUsuario(cust: any): Observable<any>{

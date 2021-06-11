@@ -76,8 +76,8 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4"></div>
             <div class="col-sm-4 text-right">
-              <button class="btn btn-dark btn-lg" type="button" (click)="limpiar()">Limpiar</button>
-              <button class="btn btn-success btn-lg" type="submit">Enviar</button>
+              <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
+              <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
             </div>
           </div>
         </form>
