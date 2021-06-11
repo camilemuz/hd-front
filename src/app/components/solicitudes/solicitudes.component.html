@@ -27,8 +27,10 @@
           <td>{{ data.fecha_solicitud | date:"dd/MM/yyyy"}}</td>
           <td *ngIf="data.estado_id_estado == 3">
             <button class="btn btn-info btn-sm" (click)="evaluar(data.id_ticket, content)">Evaluar</button>
+            <button class="btn btn-primary btn-sm" (click)="historial(data.numero, content2)">Historial</button>
           </td>
           <td *ngIf="data.estado_id_estado != 3">
+            <button class="btn btn-primary btn-sm" (click)="historial(data.numero, content2)">Historial</button>
           </td>
         </tr>
       </table>
@@ -67,4 +69,54 @@
   </div>
   <hr>
 </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+  <div class="modal-header bg-success text-white">
+    <h4 class="modal-title">Historial Ticket</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tr>
+          <th>#</th>
+          <th>Número</th>
+          <th>Estado</th>
+          <th>Agente</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
+          <th>Activo</th>
+        </tr>
+        <tr *ngFor="let data of ticketHistorico; let index = index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ data.numero }}</td>
+          <td>{{ data.estado_id_estado | estado }}</td>
+          <td>{{ data.nombre }} {{ data.ap_paterno }} {{ data.ap_materno }}</td>
+          <td>{{ data.fecha_registro | date:"dd/MM/yyyy h:mm:ss" }}</td>
+          <td>{{ data.comentarios }}</td>
+          <td class="text-center">
+            <input type="checkbox" [checked]="data.activo" onclick="return false;" onkeydown="return false;" >
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h3 class="text-center">Solicitud</h3>
+    <div class="row">
+      <div class="col-sm-6">
+        <h5>Descripción: <br></h5>
+        <textarea rows="4" disabled class="form-control">{{ requerimiento.descripcion }}</textarea>
+      </div>
+      <div class="col-sm-6">
+        <h5>Tipo Requerimiento: <small>{{ requerimiento.requerimiento }}</small></h5>
+        <h5>Departamento: <small>{{ requerimiento.departamento }}</small></h5>
+        <h5>Sucursal: <small>{{ requerimiento.sucursal }}</small></h5>
+        <h5>Usuario: <small>{{ requerimiento.usuario }}</small></h5>
+        <h5>Interno: <small>{{ requerimiento.interno }}</small></h5>
+        <h5>Fecha: <small>{{ requerimiento.fecha_registro | date:"dd/MM/yyyy h:mm:ss"}}</small></h5>
+      </div>
+    </div>
+  </div>
 </ng-template>
