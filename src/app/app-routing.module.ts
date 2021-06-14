@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent,  },
       { path: 'solicitud', component: SolicitudComponent,  },
       { path: 'solicitudes', component: SolicitudesComponent,  },
-      { path: 'registro', component: RegistroComponent },
+      
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: 'listado', component: IndexComponent },
@@ -39,6 +39,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
+  { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NopagefoundComponent},
 ];
