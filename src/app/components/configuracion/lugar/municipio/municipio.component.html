@@ -30,9 +30,8 @@
                    
                     <td>
                         <div>
-                            <a (click)="editUser(row,row.id_usuario)"  class="btn btn-warning btn-sm">Editar</a>
-                            <!-- &nbsp;
-                            <a (click)="editUser(row.id)" class="btn btn-danger btn-sm">Eliminar</a> -->
+                            <button class="btn btn-warning btn-sm" (click)="accionEditar(content, row)">Editar</button>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(row)">Eliminar</button>
                         </div>
                     </td>
                 </tr>
@@ -43,5 +42,48 @@
         </div>
     
     
-       
+        <ng-template #content let-modal>
+            <div class="modal-header bg-success text-white">
+                  <h4 class="modal-title">Editar Municipio</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="registrar()">
+                    <div class="form-row">
+                      <div class="col-sm-4">
+                        <label>Nombre Municipio <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="lugar" id="lugar" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.lugar.errors }"
+                               formControlName="lugar" [(ngModel)]="municipio.lugar" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.lugar.errors" class="invalid-feedback">
+                          <div *ngIf="f.lugar.errors.required">Municipio es requerido</div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Código <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="cod" id="cod" class="form-control"
+                               [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
+                               formControlName="cod" [(ngModel)]="municipio.cod" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                          <div *ngIf="f.cod.errors.required">Código es requerido</div>
+                        </div>
+                      </div>
+                    </div> 
+                      
+                        <div class="form-row mt-2">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 text-right">
+                            <button class="btn btn-success btn-lg" type="submit">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+             </div>
+        </ng-template>
+        
+        
+           
+            
     
