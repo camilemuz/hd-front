@@ -31,7 +31,9 @@ export class CategoriaComponent implements OnInit {
       cod: [null, Validators.required],
     
     });
+    this.categoria=new CategoriaModel();
   }
+
 
   get f(){
     return this.form.controls;
@@ -51,6 +53,7 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
+ 
   private accionEditar(content: any,categoria:CategoriaModel){
 
     this.categoria=new CategoriaModel();

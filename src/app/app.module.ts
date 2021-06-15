@@ -29,6 +29,7 @@ import { DepartamentoComponent } from './components/configuracion/lugar/departam
 import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
 import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
 import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
+import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RegistroAdminComponent } from './components/usuarios/registro-admin/reg
     CargoComponent,
     DepartamentoComponent,
     ConfiguracionComponent,
-    RegistroAdminComponent
+    RegistroAdminComponent,
+    CrearCategoriaComponent
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,10 @@ export class SolicitudService {
     return this.http.post(this.url + '/parametros/indexcat',cust);
   }
 
+  public guardarcat(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storecat', cust);
+  }
+
   public editarcategoria(id: number, categoria: CategoriaModel): Observable<any>{
     return this.http.put(this.url + '/parametros/updatecat/'+ id, categoria);
   }
