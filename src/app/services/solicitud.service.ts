@@ -64,6 +64,7 @@ export class SolicitudService {
   public sucursales (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/sucursal/' + id);
   }
+  
 
   public departamentos (): Observable<any>{
     return this.http.get(this.url + '/parametros/departamento');
