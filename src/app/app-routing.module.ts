@@ -18,11 +18,15 @@ import { CargoComponent } from './components/configuracion/parametros/cargo/carg
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
 import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
+import { CrearDepartamentoComponent } from './components/configuracion/lugar/departamento/crear-departamento/crear-departamento.component';
+import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
+      { path: 'crear-municipio', component: CrearMunicipioComponent },
+      { path: 'crear-departamento', component: CrearDepartamentoComponent },
       { path: 'crear-categoria', component: CrearCategoriaComponent },
       { path: 'registro-admin', component: RegistroAdminComponent },
       { path: 'cargo', component: CargoComponent },

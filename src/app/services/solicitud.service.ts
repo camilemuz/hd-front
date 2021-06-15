@@ -48,6 +48,10 @@ export class SolicitudService {
     return this.http.post(this.url + '/parametros/indexmun',cust);
   }
 
+  public guardarmun(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storemun', cust);
+  }
+
   public editarmunicipio(id: number, municipio: Municipio): Observable<any>{
     return this.http.put(this.url + '/parametros/updatemun/'+ id, municipio);
   }
@@ -63,6 +67,10 @@ export class SolicitudService {
 
   public departamentos (): Observable<any>{
     return this.http.get(this.url + '/parametros/departamento');
+  }
+
+  public guardardpto(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storedpto', cust);
   }
 
   public indexDpto(cust): Observable<any>{
