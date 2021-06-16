@@ -1,0 +1,31 @@
+.trans{
+    width: 200px;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn {
+    width: 200px;
+    height: 90px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    }
+
+    .boxes button {
+        display: block;
+        width: 100%;
+        padding: 0.5px;
+        /* border: none; */
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        
+        color: #000;
+      }
+       
+      .boxes button:nth-of-type(even) {
+        background: #e6c200;
+      }

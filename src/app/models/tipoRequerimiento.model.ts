@@ -3,4 +3,5 @@ export class TipoRequerimiento {
   sub_cat: string;
   cod: string;
   categoria_id_categoria: number;
+  division_id_division: number;
 }

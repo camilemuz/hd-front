@@ -20,11 +20,15 @@ import { RegistroAdminComponent } from './components/usuarios/registro-admin/reg
 import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
 import { CrearDepartamentoComponent } from './components/configuracion/lugar/departamento/crear-departamento/crear-departamento.component';
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
+import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
+import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
+      { path: 'crear-tiporeq', component: CrearTiporeqComponent },
+      { path: 'tiporequerimiento', component: TiporequerimientoComponent },
       { path: 'crear-municipio', component: CrearMunicipioComponent },
       { path: 'crear-departamento', component: CrearDepartamentoComponent },
       { path: 'crear-categoria', component: CrearCategoriaComponent },
@@ -37,7 +41,6 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent,  },
       { path: 'solicitud', component: SolicitudComponent,  },
       { path: 'solicitudes', component: SolicitudesComponent,  },
-      
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: 'listado', component: IndexComponent },
