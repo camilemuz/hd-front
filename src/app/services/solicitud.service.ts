@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import { CategoriaModel } from '../models/categoria.model';
 import { Departamento } from '../models/departamento.model';
 import { Municipio } from '../models/municipio.model';
+import {TipoRequerimiento} from '../models/tipoRequerimiento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,21 @@ export class SolicitudService {
   public requerimientos (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/tipo_requerimiento/' + id);
   }
+  public indextiporeq(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indextiporeq',cust);
+  }
+
+  public guardartiporeq(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storetiporeq', cust);
+  }
+
+  public editartiporeq(id: number, TipoRequerimiento: TipoRequerimiento): Observable<any>{
+    return this.http.put(this.url + '/parametros/updattiporeq/'+ id, TipoRequerimiento);
+  }
+
+  public eliminartiporeq( tipoRequerimiento: TipoRequerimiento): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminartiporeq',tipoRequerimiento);
+  }
 
 
   public municipios (): Observable<any>{
@@ -64,7 +80,7 @@ export class SolicitudService {
   public sucursales (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/sucursal/' + id);
   }
-  
+
 
   public departamentos (): Observable<any>{
     return this.http.get(this.url + '/parametros/departamento');

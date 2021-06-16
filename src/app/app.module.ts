@@ -32,6 +32,8 @@ import { RegistroAdminComponent } from './components/usuarios/registro-admin/reg
 import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
 import { CrearDepartamentoComponent } from './components/configuracion/lugar/departamento/crear-departamento/crear-departamento.component';
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
+import { TiporequerimientoComponent } from './components/catalogo/tiporequerimiento/tiporequerimiento.component';
+import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { CrearMunicipioComponent } from './components/configuracion/lugar/munici
     RegistroAdminComponent,
     CrearCategoriaComponent,
     CrearDepartamentoComponent,
-    CrearMunicipioComponent
+    CrearMunicipioComponent,
+    TiporequerimientoComponent,
+    CrearTiporeqComponent
   ],
   imports: [
     BrowserModule,
