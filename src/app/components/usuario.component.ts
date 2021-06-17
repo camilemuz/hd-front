@@ -6,8 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
-  styles: [
-  ]
+  styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
   public menu: any[];
@@ -54,7 +53,7 @@ export class UsuarioComponent implements OnInit {
       }
     });
   }
-
+  
 
 
 }
