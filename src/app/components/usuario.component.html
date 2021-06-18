@@ -1,35 +1,26 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid">
-  <div class="row" id="mySidenav">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
+  <div class="row" >
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
+      <div class="sidebar-sticky" id="mySidençav">
+        <!-- <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+          <button class="w3-bar-item w3-button w3-large"
+          onclick="w3_close()">Close &times;</button> -->
         <ul class="nav flex-column">
           <li class="nav-item" *ngFor="let data of menu">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            
             <a class="nav-link" routerLinkActive="active"
                [routerLink]="data.url">
               {{ data.titulo }}
             </a>
           </li>
         </ul>
+      
       </div>
     </nav>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <router-outlet></router-outlet>
     </main>
+    
   </div>
 </div>
-
-
-<script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-   
-  }
-  </script>

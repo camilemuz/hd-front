@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class UsuarioComponent implements OnInit {
   public menu: any[];
-
+  public displayNav: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router
@@ -53,7 +53,15 @@ export class UsuarioComponent implements OnInit {
       }
     });
   }
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
   
-
-
 }
+
+
+
