@@ -1,0 +1,78 @@
+<div class="container">
+    <h2>Solicitar Soporte</h2>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="form" (ngSubmit)="enviar()">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
+              <select name="categoria" id="categoria" [(ngModel)]="solicitud.categoria_id" class="form-control"
+                      (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
+                <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <label for="tipo_solicitud">En<span class="text-danger">(*)</span></label>
+              <select name="tipo_solicitud" id="tipo_solicitud" [(ngModel)]="solicitud.tipo_requerimiento_id_tipo_req"
+                      class="form-control" formControlName="tipo_solicitud">
+                <option *ngFor="let data of tipoRequerimientos" [value]="data.id_tipo_req">{{ data.sub_cat }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-12">
+              <label for="descripcion">Descripción<span class="text-danger">(*)</span></label>
+              <textarea class="form-control" id="descripcion" name="descripcion" [(ngModel)]="solicitud.descripcion"
+                        rows="3" formControlName="descripcion"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label for="municipio">Municipio<span class="text-danger">(*)</span></label>
+              <select name="municipio" id="municipio" [(ngModel)]="solicitud.municipio_id" class="form-control"
+                      (ngModelChange)="sucursal()" formControlName="municipio">
+                <option *ngFor="let data of municipios" [value]="data.id_lugar">{{ data.lugar }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="sucursal">Sucursal<span class="text-danger">(*)</span></label>
+              <select name="sucursal" id="sucursal" [(ngModel)]="solicitud.sucursal_id_sucursal"
+                      class="form-control" formControlName="sucursal">
+                <option *ngFor="let data of sucursales" [value]="data.id_sucursal">{{ data.sucursal }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="departamento">Departamento<span class="text-danger">(*)</span></label>
+              <select name="departamento" id="departamento" [(ngModel)]="solicitud.departamento_id_departamento"
+                      class="form-control" formControlName="departamento">
+                <option *ngFor="let data of departamentos" [value]="data.id_departamento">{{ data.departamento }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="interno">Interno<span class="text-danger">(*)</span></label>
+              <input type="text" class="form-control" [(ngModel)]="solicitud.interno" name="interno"
+                     id="interno" formControlName="interno">
+            </div>
+            <div class="col-sm-3">
+                <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
+                <select name="usuario" id="usuario" [(ngModel)]="solicitud.email" class="form-control"
+                        formControlName="usuario">
+                  <option *ngFor="let data of usuarios" [value]="data.usuario_id_usuario">{{ data.email }}</option>
+                </select>
+              </div>
+          </div>
+          <div class="form-row mt-2">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-right">
+              <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
+              <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  

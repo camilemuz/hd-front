@@ -33,6 +33,7 @@ import { CrearDepartamentoComponent } from './components/configuracion/lugar/dep
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
 import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
+import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TiporequerimientoComponent } from './components/configuracion/catalogo/
     CrearDepartamentoComponent,
     CrearMunicipioComponent,
     TiporequerimientoComponent,
-    CrearTiporeqComponent
+    CrearTiporeqComponent,
+    SolicitudAgenteComponent
   ],
   imports: [
     BrowserModule,

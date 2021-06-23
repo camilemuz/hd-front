@@ -118,4 +118,8 @@ export class SolicitudService {
     return this.http.post(this.url + '/funcionario/solicitar_req', cust);
   }
 
+  public Solicitudagente(cust: any): Observable<any>{
+    return this.http.post(this.url + '/funcionario/solicitud_agen', cust);
+  }
+
 }

@@ -17,11 +17,13 @@ export class AuthService {
   public menuAgente = [
     { url: '/home', titulo: 'Home' },
     { url: '/solicitud', titulo: 'Solicitud' },
+    { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
     { url: '/ticket', titulo: 'Ticket' }
   ];
   public menuAdmin = [
     { url: '/home', titulo: 'Home' },
     { url: '/solicitud', titulo: 'Solicitud' },
+    { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
     { url: '/ticket', titulo: 'Ticket' },
     // { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
@@ -53,6 +55,11 @@ export class AuthService {
   public index(cust){
     return this.http.post(this.url + '/admin/index', cust);
   }
+
+  public usuarios (): Observable<any>{
+    return this.http.get(this.url + '/parametros/usuarios');
+  }
+
   public store(id: number, usuario: UsuarioModel){
     return this.http.put(this.url + '/admin/store/' + id, usuario);
   }
