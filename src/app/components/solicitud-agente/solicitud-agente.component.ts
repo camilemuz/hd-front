@@ -36,7 +36,8 @@ export class SolicitudAgenteComponent implements OnInit {
     this.solicitud = new Solicitud();
     this.solicitud.categoria_id = 0;
     this.solicitud.municipio_id = 0;
-    this.solicitud.email = null;
+    this.solicitud.usuario_id=0;
+    
   }
 
   ngOnInit(): void {
@@ -65,12 +66,12 @@ export class SolicitudAgenteComponent implements OnInit {
         this.departamentos = res.departamentos;
       }
     });
-this.authService.usuarios().subscribe((res:any)=>{
-  if (res.respuesta){
-    this.usuarios = res.users;
-  }
+    this.authService.usuarios().subscribe((res:any)=>{
+      if (res.respuesta){
+        this.usuarios = res.usuarios;
+      }
 
-});
+    });
 
   
 
@@ -81,6 +82,7 @@ this.authService.usuarios().subscribe((res:any)=>{
     this.solicitud = new Solicitud();
     this.solicitud.categoria_id = 0;
     this.solicitud.municipio_id = 0;
+    this.solicitud.usuario_id=0;
   }
 
   isFieldValid(field: string) {
@@ -141,6 +143,7 @@ this.authService.usuarios().subscribe((res:any)=>{
             this.solicitud = new Solicitud();
             this.solicitud.categoria_id = 0;
             this.solicitud.municipio_id = 0;
+            this.solicitud.usuario_id=0;
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',

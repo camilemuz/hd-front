@@ -1,6 +1,7 @@
 export class Solicitud {
     descripcion: string;
     interno: string;
+    usuario_id_usuario:number;
     email: string;
     departamento_id_departamento: number;
     tipo_requerimiento_id_tipo_req: number;

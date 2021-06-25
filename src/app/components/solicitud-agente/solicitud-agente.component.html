@@ -56,9 +56,9 @@
             </div>
             <div class="col-sm-3">
                 <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
-                <select name="usuario" id="usuario" [(ngModel)]="solicitud.email" class="form-control"
+                <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="form-control"
                         formControlName="usuario">
-                  <option *ngFor="let data of usuarios" [value]="data.usuario_id_usuario">{{ data.email }}</option>
+                  <option *ngFor="let data of usuarios" [value]="data.email">{{ data.email }}</option>
                 </select>
               </div>
           </div>
