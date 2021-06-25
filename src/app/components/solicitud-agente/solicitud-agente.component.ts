@@ -36,7 +36,7 @@ export class SolicitudAgenteComponent implements OnInit {
     this.solicitud = new Solicitud();
     this.solicitud.categoria_id = 0;
     this.solicitud.municipio_id = 0;
-    this.solicitud.usuario_id=0;
+   
     
   }
 
@@ -82,7 +82,7 @@ export class SolicitudAgenteComponent implements OnInit {
     this.solicitud = new Solicitud();
     this.solicitud.categoria_id = 0;
     this.solicitud.municipio_id = 0;
-    this.solicitud.usuario_id=0;
+    
   }
 
   isFieldValid(field: string) {
@@ -138,12 +138,12 @@ export class SolicitudAgenteComponent implements OnInit {
         Swal.showLoading();
         this.solicitud.token = localStorage.getItem('token');
         this.solicitud.email = localStorage.getItem('usuario');
-        this.solicitudService.guardarSolicitud(this.solicitud).subscribe((res: any) =>{
+        this.solicitudService.Solicitudagente(this.solicitud).subscribe((res: any) =>{
           if (res.respuesta){
             this.solicitud = new Solicitud();
             this.solicitud.categoria_id = 0;
             this.solicitud.municipio_id = 0;
-            this.solicitud.usuario_id=0;
+            
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
