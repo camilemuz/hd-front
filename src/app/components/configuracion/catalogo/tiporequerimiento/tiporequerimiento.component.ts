@@ -38,6 +38,7 @@ export class TiporequerimientoComponent implements OnInit {
       division: [null, Validators.required],
     
     });
+
   }
  
   get f(){
@@ -45,14 +46,12 @@ export class TiporequerimientoComponent implements OnInit {
   }
 
   private index(){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      token: localStorage.getItem('token')
-    }
-     this.parametroService.indextiporeq(cust).subscribe((resp: any) => {
+    
+     this.parametroService.indextiporeq().subscribe((resp: any) => {
       console.log(resp);
       if (resp.respuesta){
-        this.tiporeqs = resp.tiporeqs;
+        this.tiporeqs = resp.req;
+        
         
       }
     });
@@ -115,15 +114,19 @@ export class TiporequerimientoComponent implements OnInit {
    
     this.parametroService.categorias().subscribe((res: any) => {
       if (res.respuesta) {
-        this.categorias = res.categorias;
+        this.categorias = res.cat;
         console.log('cat-->',res);
+        
+        
         
       }
     });
     this.parametroService.divisiones().subscribe((res: any) => {
       if (res.respuesta) {
-        this.divisiones = res.divisiones;
+        this.divisiones = res.div;
         console.log('div-->',res);
+        
+        
       }
     });
   }

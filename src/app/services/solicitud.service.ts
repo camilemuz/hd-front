@@ -40,8 +40,8 @@ export class SolicitudService {
   public requerimientos (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/tipo_requerimiento/' + id);
   }
-  public indextiporeq(cust): Observable<any>{
-    return this.http.post(this.url + '/parametros/indextiporeq',cust);
+  public indextiporeq(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indextiporeq');
   }
 
   public guardartiporeq(cust: any): Observable<any>{
@@ -119,7 +119,7 @@ export class SolicitudService {
   }
 
   public Solicitudagente(cust: any): Observable<any>{
-    return this.http.post(this.url + '/funcionario/solicitud_agen', cust);
+    return this.http.post(this.url + '/funcionario/solicitud', cust);
   }
 
 }

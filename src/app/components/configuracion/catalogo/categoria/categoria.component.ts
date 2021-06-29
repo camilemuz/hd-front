@@ -31,7 +31,7 @@ export class CategoriaComponent implements OnInit {
       cod: [null, Validators.required],
     
     });
-    this.categoria=new CategoriaModel();
+   
   }
 
 
@@ -40,11 +40,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   private index(){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      token: localStorage.getItem('token')
-    }
-     this.parametroService.indexcat(cust).subscribe((resp: any) => {
+    this.parametroService.categorias().subscribe((resp: any) => {
       if (resp.respuesta){
         this.categorias = resp.categorias;
       }
@@ -53,7 +49,6 @@ export class CategoriaComponent implements OnInit {
 
  
   private accionEditar(content: any,categoria:CategoriaModel){
-
     this.categoria=new CategoriaModel();
     this.categoria=categoria;
     this.modalService.open(content,{size:'lg'});
@@ -75,8 +70,8 @@ export class CategoriaComponent implements OnInit {
       if(resp.respuesta){
         this.modalService.dismissAll();
         this.index();
-        
-        
+
+
       }
     })
     
@@ -93,18 +88,20 @@ export class CategoriaComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        
+
         this.parametroService.eliminarcategoria(categoria).subscribe((resp: any) => {
           if (resp.respuesta){
             Swal.fire(resp.mensaje, '', 'success');
             this.index();
           }else{
             Swal.fire('Cancelado', '', 'info')
-          }
+          } 
         })
       }
     })
   }
+
+
 
 
   

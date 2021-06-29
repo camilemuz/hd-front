@@ -16,15 +16,15 @@ export class AuthService {
   ];
   public menuAgente = [
     { url: '/home', titulo: 'Home' },
-    { url: '/solicitud', titulo: 'Solicitud' },
+    // { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
-    { url: '/ticket', titulo: 'Ticket' }
+    { url: '/ticket', titulo: 'Tickets' }
   ];
   public menuAdmin = [
     { url: '/home', titulo: 'Home' },
-    { url: '/solicitud', titulo: 'Solicitud' },
+    // { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
-    { url: '/ticket', titulo: 'Ticket' },
+    { url: '/ticket', titulo: 'Tickets' },
     // { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
     { url: '/dashboard', titulo: 'Dashboard' },
