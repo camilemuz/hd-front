@@ -60,8 +60,8 @@ export class SolicitudService {
   public municipios (): Observable<any>{
     return this.http.get(this.url + '/parametros/municipio');
   }
-  public indexmunicipio(cust): Observable<any>{
-    return this.http.post(this.url + '/parametros/indexmun',cust);
+  public indexmunicipio(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexmun');
   }
 
   public guardarmun(cust: any): Observable<any>{

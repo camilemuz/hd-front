@@ -38,11 +38,7 @@ export class MunicipioComponent implements OnInit {
   }
 
   private index(){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      token: localStorage.getItem('token')
-    }
-     this.parametroService.indexmunicipio(cust).subscribe((resp: any) => {
+     this.parametroService.indexmunicipio().subscribe((resp: any) => {
       if (resp.respuesta){
         this.municipios = resp.municipios;
         
