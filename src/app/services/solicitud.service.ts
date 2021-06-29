@@ -99,7 +99,7 @@ export class SolicitudService {
   }
 
   public eliminarDpto( departamento: Departamento): Observable<any>{
-    return this.http.post(this.url + '/parametros/eliminardepto',departamento);
+    return this.http.post(this.url + '/parametros/eliminardpto',departamento);
   }
 
   public divisiones (): Observable<any>{
