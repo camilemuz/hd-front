@@ -119,7 +119,7 @@ export class SolicitudService {
   }
 
   public Solicitudagente(cust: any): Observable<any>{
-    return this.http.post(this.url + '/funcionario/solicitud', cust);
+    return this.http.post(this.url + '/funcionario/solicitud_agen', cust);
   }
 
 }
