@@ -38,4 +38,11 @@ export class TicketService {
   public historial(cust: any){
     return this.http.post(`${this.url}/agente/historico`, cust);
   }
+  public cambiarEstado(cust: any){
+    return this.http.post(`${this.url}/agente/cambiar_estado`, cust);
+  }
+
+  public cambiarAgente(cust: any){
+    return this.http.post(`${this.url}/agente/cambio_agente`, cust);
+  }
 }

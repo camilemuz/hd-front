@@ -1,4 +1,5 @@
 export class Solicitud {
+  id_requerimiento: number;
   descripcion: string;
   interno: string;
   email: string;

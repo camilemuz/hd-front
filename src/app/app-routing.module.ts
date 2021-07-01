@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: 'listado', component: IndexComponent },
-      { path: '', redirectTo: 'solicitud', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
     canActivate: [AuthGuard]
   },

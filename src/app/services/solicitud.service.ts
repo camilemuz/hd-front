@@ -122,4 +122,14 @@ export class SolicitudService {
     return this.http.post(this.url + '/funcionario/solicitud_agen', cust);
   }
 
+  
+  public editarSolicitud(cust: any): Observable<any>{
+    return this.http.post(this.url + '/funcionario/editar_req', cust);
+  }
+
+  public detalleRequerimiento (idRequerimiento: number): Observable<any>{
+    return this.http.get(this.url + '/agente/ticket/' + idRequerimiento);
+  }
+
+
 }

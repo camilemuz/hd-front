@@ -11,4 +11,5 @@ export class UsuarioModel {
   rol_id_rol: number;
   token:string;
   usuario: string;
+  id_ticket: number;
 }

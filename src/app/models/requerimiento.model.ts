@@ -1,4 +1,5 @@
 export class RequerimientoModel {
+  id_requerimiento: number;
   descripcion: string;
   usuario: string;
   interno: string;
