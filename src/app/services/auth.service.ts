@@ -7,7 +7,7 @@ import {UsuarioModel} from '../models/usuario.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url: string = 'http://localhost/mda/help-back/public/api';
 
   public menuFuncionario = [
     { url: '/home', titulo: 'Home'},

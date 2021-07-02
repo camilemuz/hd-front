@@ -30,7 +30,7 @@
                   <select name="categoria" id="categoria" class="form-control"
                           [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }"
                           formControlName="categoria" [(ngModel)]="tiporeq.categoria_id_categoria">
-                    <option *ngFor="let data of categorias" [value]="data.categoria_id_categoria">{{ data.categoria }}</option>
+                    <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
                   </select>
                 <label for="division">División <span class="text-danger">(*)</span></label>
                   <select name="division" id="division" class="form-control"
