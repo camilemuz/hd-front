@@ -74,7 +74,7 @@ import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitu
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
   ],
