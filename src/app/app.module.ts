@@ -34,6 +34,7 @@ import { CrearMunicipioComponent } from './components/configuracion/lugar/munici
 import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
 import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
+import { CategoriaPipe } from './pipes/categoria.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitu
     CrearMunicipioComponent,
     TiporequerimientoComponent,
     CrearTiporeqComponent,
-    SolicitudAgenteComponent
+    SolicitudAgenteComponent,
+    CategoriaPipe
   ],
   imports: [
     BrowserModule,

@@ -114,7 +114,7 @@ export class TiporequerimientoComponent implements OnInit {
    
     this.parametroService.categorias().subscribe((res: any) => {
       if (res.respuesta) {
-        this.categorias = res.cat;
+        this.categorias = res.categorias;
         console.log('cat-->',res);
         
         
@@ -123,7 +123,7 @@ export class TiporequerimientoComponent implements OnInit {
     });
     this.parametroService.divisiones().subscribe((res: any) => {
       if (res.respuesta) {
-        this.divisiones = res.div;
+        this.divisiones = res.divisiones;
         console.log('div-->',res);
         
         

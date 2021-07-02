@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'categoria'
 })
-export class CastegoriaPipe implements PipeTransform {
+export class CategoriaPipe implements PipeTransform {
 
   transform(value: number): string {
     if (value == 1) return 'Asistencia Tecnica';
