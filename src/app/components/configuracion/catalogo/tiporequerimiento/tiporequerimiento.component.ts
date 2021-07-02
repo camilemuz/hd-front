@@ -50,7 +50,7 @@ export class TiporequerimientoComponent implements OnInit {
      this.parametroService.indextiporeq().subscribe((resp: any) => {
       console.log(resp);
       if (resp.respuesta){
-        this.tiporeqs = resp.req;
+        this.tiporeqs = resp.tipoRequerimientos;
         
         
       }

@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
     providedIn: 'root'
   })
   export class ComuRestService {
-    private url='http://213.169.2.45/mda/help-back/public/api';
+    private url='http://localhost/mda/help-back/public/api';
    
     constructor(private http: HttpClient) { }
   
