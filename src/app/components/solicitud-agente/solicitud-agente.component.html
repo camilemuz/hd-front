@@ -57,7 +57,7 @@
             <div class="col-sm-3">
                 <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
                 <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="form-control"
-                        formControlName="usuario">
+                        formControlName="usuario" (change)="filtroChangeCat($event)">
                   <option *ngFor="let data of usuarios" [value]="data.id_usuario">{{ data.email }}</option>
                 </select>
               </div>
