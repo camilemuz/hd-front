@@ -2,6 +2,7 @@ export class Solicitud {
   id_requerimiento: number;
   descripcion: string;
   interno: string;
+  media: string;
   email: string;
   usuario_id_usuario: number;
   usuario_id:number;

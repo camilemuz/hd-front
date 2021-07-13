@@ -49,6 +49,7 @@ export class SolicitudAgenteComponent implements OnInit {
       municipio: [null, Validators.required],
       sucursal: [null, Validators.required],
       interno: [null, Validators.required],
+      media: [null],
       departamento: [null, Validators.required],
       usuario: [null, Validators.required],
     });
