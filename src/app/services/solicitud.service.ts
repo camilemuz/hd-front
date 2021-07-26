@@ -5,6 +5,7 @@ import { CategoriaModel } from '../models/categoria.model';
 import { Departamento } from '../models/departamento.model';
 import { Municipio } from '../models/municipio.model';
 import {TipoRequerimiento} from '../models/tipoRequerimiento.model';
+import { Sucursal } from '../models/sucursal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,21 @@ export class SolicitudService {
 
   public sucursales (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/sucursal/' + id);
+  }
+  public indexsucursal(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexsucursal');
+  }
+
+  public guardarsucursal(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storesucursal', cust);
+  }
+
+  public editarsucursal(id: number, sucursal: Sucursal): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatesucursal/'+ id, sucursal);
+  }
+
+  public eliminarsucursal( sucursal: Sucursal): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminarsucursal',sucursal);
   }
 
 

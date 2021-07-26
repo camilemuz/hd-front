@@ -23,13 +23,17 @@ import { CrearMunicipioComponent } from './components/configuracion/lugar/munici
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
 import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
+import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
+import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
       { path: 'solicitud-agente', component:SolicitudAgenteComponent },
-      { path: 'crear-tiporeq', component: CrearTiporeqComponent },
+      { path: 'crear-sucursal', component: CrearSucursalComponent },
+      { path: 'sucursal', component: SucursalComponent },
+      { path: 'crear-tiporeq', component: CrearTiporeqComponent },     
       { path: 'tiporequerimiento', component: TiporequerimientoComponent },
       { path: 'crear-municipio', component: CrearMunicipioComponent },
       { path: 'crear-departamento', component: CrearDepartamentoComponent },

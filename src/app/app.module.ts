@@ -35,6 +35,8 @@ import { CrearTiporeqComponent } from './components/configuracion/catalogo/tipor
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
 import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
 import { CategoriaPipe } from './pipes/categoria.pipe';
+import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
+import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { CategoriaPipe } from './pipes/categoria.pipe';
     TiporequerimientoComponent,
     CrearTiporeqComponent,
     SolicitudAgenteComponent,
-    CategoriaPipe
+    CategoriaPipe,
+    SucursalComponent,
+    CrearSucursalComponent
   ],
   imports: [
     BrowserModule,
