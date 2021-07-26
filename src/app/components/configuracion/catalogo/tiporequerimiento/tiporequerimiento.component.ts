@@ -51,7 +51,7 @@ export class TiporequerimientoComponent implements OnInit {
       console.log(resp);
       if (resp.respuesta){
         this.tiporeqs = resp.tipoRequerimientos;
-        
+
         
       }
     });

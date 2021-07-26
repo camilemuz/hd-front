@@ -49,7 +49,7 @@ export class SolicitudService {
   }
 
   public editartiporeq(id: number, TipoRequerimiento: TipoRequerimiento): Observable<any>{
-    return this.http.put(this.url + '/parametros/updattiporeq/'+ id, TipoRequerimiento);
+    return this.http.put(this.url + '/parametros/updatetiporeq/'+ id, TipoRequerimiento);
   }
 
   public eliminartiporeq( tipoRequerimiento: TipoRequerimiento): Observable<any>{

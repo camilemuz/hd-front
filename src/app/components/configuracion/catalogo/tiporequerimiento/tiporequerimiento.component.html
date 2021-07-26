@@ -86,7 +86,7 @@
                     <label>Código <span class="text-danger">(*)</span>  </label>
                     <input type="text" name="cod" id="cod" class="form-control"
                            [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
-                           formControlName="cod" [(ngModel)]="categoria.cod" style="text-transform:uppercase">
+                           formControlName="cod" [(ngModel)]="tiporeq.cod" style="text-transform:uppercase">
                     <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
                       <div *ngIf="f.cod.errors.required">Código es requerido</div>
                     </div>
@@ -97,7 +97,7 @@
                     <select name="categoria" id="categoria" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }"
                             formControlName="categoria" [(ngModel)]="tiporeq.categoria_id_categoria">
-                      <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.rol }}</option>
+                      <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
                     </select>
                     <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
                       <div *ngIf="f.categoria.errors.required">Categoría es requerido</div>
@@ -108,7 +108,7 @@
                     <select name="division" id="division" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.division.errors }"
                             formControlName="division" [(ngModel)]="tiporeq.division_id_division">
-                      <option *ngFor="let data of divisiones" [value]="data.id_division">{{ data.rol }}</option>
+                      <option *ngFor="let data of divisiones" [value]="data.id_division">{{ data.division }}</option>
                     </select>
                     <div *ngIf="submitted && f.division.errors" class="invalid-feedback">
                       <div *ngIf="f.division.errors.required">Categoría es requerido</div>
