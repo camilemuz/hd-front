@@ -25,6 +25,7 @@ import { CrearTiporeqComponent } from './components/configuracion/catalogo/tipor
 import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
 import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
 import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
+import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
 
 const routes: Routes = [
   { path: '',
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'crear-categoria', component: CrearCategoriaComponent },
       { path: 'registro-admin', component: RegistroAdminComponent },
       { path: 'cargo', component: CargoComponent },
+      { path: 'crear-cargo', component: CrearCargoComponent },
       { path: 'departamento', component: DepartamentoComponent },
       { path: 'municipio', component: MunicipioComponent },
       { path: 'categoria', component: CategoriaComponent },

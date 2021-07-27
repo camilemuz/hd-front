@@ -38,6 +38,8 @@ import { CategoriaPipe } from './pipes/categoria.pipe';
 import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
 import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
 import { LugarPipe } from './pipes/lugar.pipe';
+import { PrioridadPipe } from './pipes/prioridad.pipe';
+import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { LugarPipe } from './pipes/lugar.pipe';
     CategoriaPipe,
     SucursalComponent,
     CrearSucursalComponent,
-    LugarPipe
+    LugarPipe,
+    PrioridadPipe,
+    CrearCargoComponent
   ],
   imports: [
     BrowserModule,

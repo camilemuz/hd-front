@@ -125,8 +125,8 @@ export class SolicitudService {
   public divisiones (): Observable<any>{
     return this.http.get(this.url + '/parametros/division');
   }
-  public indexdivision(): Observable<any>{
-    return this.http.get(this.url + '/parametros/indexdivision');
+  public indexdivision(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexdivision',cust);
   }
 
   public storedivision(cust: any): Observable<any>{
@@ -142,11 +142,17 @@ export class SolicitudService {
   }
 
 
+  public prioridad (): Observable<any>{
+    return this.http.get(this.url + '/parametros/prioridad');
+  }
+
+
+
   public cargos (): Observable<any>{
     return this.http.get(this.url + '/parametros/cargo');
   }
-  public indexcargo(): Observable<any>{
-    return this.http.get(this.url + '/parametros/indexcargo');
+  public indexcargo(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexcargo',cust);
   }
 
   public storecargo(cust: any): Observable<any>{

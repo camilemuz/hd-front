@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriaModel } from 'src/app/models/categoria.model';
-import { Departamento } from 'src/app/models/departamento.model';
 import { DivisionModel } from 'src/app/models/division.model';
 import { TipoRequerimiento } from 'src/app/models/tipoRequerimiento.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
