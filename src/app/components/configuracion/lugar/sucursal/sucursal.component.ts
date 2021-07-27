@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Municipio } from 'src/app/models/municipio.model';
 import { Sucursal } from 'src/app/models/sucursal.model';
-import { TipoRequerimiento } from 'src/app/models/tipoRequerimiento.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import Swal from 'sweetalert2';
 
@@ -45,13 +44,8 @@ export class SucursalComponent implements OnInit {
   private index(){
     
      this.parametroService.indexsucursal().subscribe((resp: any) => {
-      console.log(resp);
       if (resp.respuesta){
         this.sucursales = resp.sucursales;
-        
-        
-
-        
       }
     });
   }
@@ -114,10 +108,7 @@ export class SucursalComponent implements OnInit {
     this.parametroService.municipios().subscribe((res: any) => {
       if (res.respuesta) {
         this.municipios = res.municipios;
-        console.log('municipios-->',res);
-        
-        
-        
+       
       }
     });
    

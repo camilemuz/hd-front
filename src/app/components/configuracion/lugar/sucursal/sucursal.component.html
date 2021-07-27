@@ -75,7 +75,7 @@
                   <div class="col-sm-4">
                     <label>Sucursal <span class="text-danger">(*)</span>  </label>
                     <input type="text" name="sucursal" id="sucursal" class="form-control"
-                           [ngClass]="{ 'is-invalid': submitted && f.sub_cat.errors }"
+                           [ngClass]="{ 'is-invalid': submitted && f.sucursal.errors }"
                            formControlName="sucursal" [(ngModel)]="sucursal.sucursal" style="text-transform:uppercase">
                     <div *ngIf="submitted && f.sucursal.errors" class="invalid-feedback">
                       <div *ngIf="f.sucursal.errors.required">Sucursal es requerida</div>

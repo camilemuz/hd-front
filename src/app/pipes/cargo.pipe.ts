@@ -11,8 +11,8 @@ export class CargoPipe implements PipeTransform {
     if (value == 3) return 'Jefe de División';
     if (value == 4) return 'Supervisor';
     if (value == 5) return 'Oficial';
-    if (value == 6) return 'Administrativo';
-    if (value == 7) return 'Ayudante';
+    if (value == 6) return 'Asistente Ayudante';
+    if (value == 7) return 'Obrero-Peon';
     return null;
   }
 

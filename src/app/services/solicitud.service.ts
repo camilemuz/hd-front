@@ -6,6 +6,8 @@ import { Departamento } from '../models/departamento.model';
 import { Municipio } from '../models/municipio.model';
 import {TipoRequerimiento} from '../models/tipoRequerimiento.model';
 import { Sucursal } from '../models/sucursal.model';
+import { DivisionModel } from '../models/division.model';
+import { CargoModel } from '../models/cargo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -118,13 +120,47 @@ export class SolicitudService {
     return this.http.post(this.url + '/parametros/eliminardpto',departamento);
   }
 
+
+  
   public divisiones (): Observable<any>{
     return this.http.get(this.url + '/parametros/division');
   }
+  public indexdivision(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexdivision');
+  }
+
+  public storedivision(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storedivision', cust);
+  }
+
+  public updatedivision(id: number, division: DivisionModel): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatedivision/'+ id, division);
+  }
+
+  public eliminardivision( division: DivisionModel): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminardivision',division);
+  }
+
 
   public cargos (): Observable<any>{
     return this.http.get(this.url + '/parametros/cargo');
   }
+  public indexcargo(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexcargo');
+  }
+
+  public storecargo(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storecargo', cust);
+  }
+
+  public updatecargo(id: number, cargo: CargoModel): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatecargo/'+ id, cargo);
+  }
+
+  public eliminarcargo( cargo: CargoModel): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminarcargo',cargo);
+  }
+
 
   public roles (): Observable<any>{
     return this.http.get(this.url + '/parametros/rol');
