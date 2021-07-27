@@ -37,6 +37,7 @@ import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitu
 import { CategoriaPipe } from './pipes/categoria.pipe';
 import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
 import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
+import { LugarPipe } from './pipes/lugar.pipe';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { CrearSucursalComponent } from './components/configuracion/lugar/sucursa
     SolicitudAgenteComponent,
     CategoriaPipe,
     SucursalComponent,
-    CrearSucursalComponent
+    CrearSucursalComponent,
+    LugarPipe
   ],
   imports: [
     BrowserModule,

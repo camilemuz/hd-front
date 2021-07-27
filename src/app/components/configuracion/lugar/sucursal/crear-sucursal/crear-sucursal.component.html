@@ -1,1 +1,51 @@
-<p>crear-sucursal works!</p>
+<div class="jumbotron">
+    <div class="container">
+      <h2>Añadir Sucursal</h2>
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="form" (ngSubmit)="registrar()">
+            <div class="form-row">
+                <div class="col-sm-4">
+                    <label>Código <span class="text-danger">(*)</span>  </label>
+                    <input type="text" name="cod" id="cod" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
+                           formControlName="cod" [(ngModel)]="sucursal.cod" style="text-transform:uppercase">
+                    <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                      <div *ngIf="f.cod.errors.required">Código es requerido</div>
+                    </div>
+                  </div>
+                    <div class="col-sm-4">
+                        <label>Nombre de la Sucursal <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="sucursal" id="sucursal" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.sucursal.errors }"
+                            formControlName="sucursal" [(ngModel)]="sucursal.sucursal" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.sucursal.errors" class="invalid-feedback">
+                        <div *ngIf="f.sucursal.errors.required">Sucursal es requerida</div>
+                        </div>
+                    </div>
+                  
+            </div> 
+            <div class="form-row">
+                <div class="col-sm-4">
+                <label for="municipio">Municipio <span class="text-danger">(*)</span></label>
+                  <select name="municipio" id="municipio" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.municipio.errors }"
+                          formControlName="municipio" [(ngModel)]="sucursal.municipio_id_lugar">
+                    <option *ngFor="let data of municipios" [value]="data.id_lugar">{{ data.lugar }}</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4 text-right">
+                <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
+                <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -48,7 +48,7 @@ export class SucursalComponent implements OnInit {
       console.log(resp);
       if (resp.respuesta){
         this.sucursales = resp.sucursales;
-        console.log('sucursales-->',resp);
+        
         
 
         
