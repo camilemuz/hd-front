@@ -3,7 +3,7 @@
   <hr>
   <div class="row">
     <div class="col">
-      <form [formGroup]="form" (ngSubmit)="enviar()">
+      <form [formGroup]="form" (ngSubmit)="enviar()" enctype="multipart/form-data">
         <div class="form-row">
           <div class="col-sm-4">
             <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
@@ -54,6 +54,18 @@
             <input type="text" class="form-control" [(ngModel)]="solicitud.interno" name="interno"
                    id="interno" formControlName="interno">
           </div>
+
+         
+            <div class="col-sm-4">
+              
+                <label for="arvhivo">Adjuntar un archivo</label>
+                <input name="archivo" id="archivo" [(ngModel)]="solicitud.archivo" type="file"
+                class="form-control" formControlName="archivo" (change)="fileChangeEvent($event)">
+                <!-- <p class="help-block">Puede agregar algú</p> -->
+              
+        </div> 
+      
+
         </div>
         <div class="form-row mt-2">
           <div class="col-sm-4"></div>

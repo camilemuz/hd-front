@@ -10,8 +10,8 @@ export class TicketService {
     private http: HttpClient
   ) { }
 
-  public listado(){
-    return this.http.post(`${this.url}/agente/tickets`, null);
+  public listado(cust){
+    return this.http.post(`${this.url}/agente/tickets`, cust);
   }
 
   public listadoFuncionario(cust: any){

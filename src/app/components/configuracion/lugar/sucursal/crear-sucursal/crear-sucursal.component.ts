@@ -103,7 +103,7 @@ export class CrearSucursalComponent implements OnInit {
             });
             Toast.fire({
               icon: 'success',
-              title: 'Sucursal creada con exito'
+              title: 'Requerimiento creado con exito'
             });
             
           }else{

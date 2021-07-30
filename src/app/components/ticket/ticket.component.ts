@@ -59,12 +59,17 @@ export class TicketComponent implements OnInit {
     Swal.showLoading();
     this.ticketsAll = [];
     this.tickets = [];
-    this.ticketService.listado().subscribe((resp: any) => {
-      if (resp.respuesta){
+  
+    let cust = {
+      email: localStorage.getItem('usuario'),
+      token: localStorage.getItem('token')
+    };
+    this.ticketService.listado(cust).subscribe((resp: any) => {
+      if (resp.respuesta) {
         this.ticketsAll = resp.tickets;
         this.ticketsAll.forEach((value) => {
           // @ts-ignore
-          if (value.estado_id_estado != 3){
+          if (value.estado_id_estado != 3) {
             this.tickets.push(value);
           }
         });

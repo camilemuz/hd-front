@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { CategoriaModel } from '../models/categoria.model';
 import { Departamento } from '../models/departamento.model';
@@ -8,6 +8,7 @@ import {TipoRequerimiento} from '../models/tipoRequerimiento.model';
 import { Sucursal } from '../models/sucursal.model';
 import { DivisionModel } from '../models/division.model';
 import { CargoModel } from '../models/cargo.model';
+import { Solicitud } from '../models/solicitud.model';
 
 @Injectable({
   providedIn: 'root'
@@ -172,8 +173,11 @@ export class SolicitudService {
     return this.http.get(this.url + '/parametros/rol');
   }
 
-  public guardarSolicitud(cust: any): Observable<any>{
-    return this.http.post(this.url + '/funcionario/solicitar_req', cust);
+  public guardarSolicitud(cust: Solicitud): Observable<any>{
+    let json = JSON.stringify(cust.archivo);
+    console.log(cust);
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(this.url + '/funcionario/solicitar_req', cust, {headers});
   }
 
   public Solicitudagente(cust: any): Observable<any>{

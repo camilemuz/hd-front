@@ -7,4 +7,5 @@ export class RequerimientoModel {
   departamento: string;
   sucursal: string;
   fecha_registro: string;
+  archivo: any;
 }
