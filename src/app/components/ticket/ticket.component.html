@@ -1,14 +1,15 @@
 <div class="container">
   <h2>Tickets</h2>
   <hr>
-  <!-- <button class="btn btn-success" (click)="general()">General</button>
-  <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button> -->
+  <!-- <button class="btn btn-success" (click)="general()">General</button> -->
+  <!-- <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button> -->
   <div>
     <label for="">Ver todos &nbsp;</label>
     <input type="checkbox" [checked]="ver" (click)="verTodos()">
   </div>
   <div class="row">
-    <div class="col table-responsive">
+    
+    <div class="col table-responsive" *ngIf="tickets.length != 0">
       <table class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
         <tr id="firstrow">
           <th scope="col">Numero</th>
@@ -39,6 +40,10 @@
               </td>
           </tr>
         </table>
+      </div>
+      <div *ngIf="tickets.length==0">
+        <h3 class="text-danger"> Sun bandeja de tickets se encuentra vacía</h3>
+       
       </div>
     </div>
   </div>

@@ -424,9 +424,11 @@ export class TicketComponent implements OnInit {
       link.download=`${nombre}.png`;
     } else if (auxiliar2[1] =='docx'){
       link.download=`${nombre}.docx`;
-    } else {
+    } else if (auxiliar2[1] =='xlsx'){
       link.download=`${nombre}.xlsx`;
-    }
+    }else if (auxiliar2[1] =='jpeg'){
+      link.download=`${nombre}.jpeg`;
+    } 
     link.click();
     // window.open(url,'_blank');
   }
