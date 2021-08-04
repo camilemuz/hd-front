@@ -78,14 +78,16 @@ export class TicketComponent implements OnInit {
     });
   }
 
-  public detalle(id: number, content){
+  public detalle(data: TicketModel, content) {
     this.tiket = new TicketModel();
-    this.tickets.forEach((value) => {
-      if (value.id_ticket == id) {
-        this.tiket = value;
-      }
-    });
-    this.modalService.open(content, {size: 'lg' });
+    Object.assign(this.tiket, data);
+    console.log(this.tiket);
+    // this.tickets.forEach((value) => {
+    //   if (value.id_ticket == id) {
+    //     this.tiket = value;
+    //   }
+    // });
+    this.modalService.open(content, {size: 'lg'});
   }
 
   public tomarTicket(id: number){
@@ -161,15 +163,15 @@ export class TicketComponent implements OnInit {
     });
   }
 
-  public tecnologia(){
-    this.tickets = [];
-    this.ticketsAll.forEach((value) => {
-      // @ts-ignore
-      if (value.division_id_division == 1){
-        this.tickets.push(value);
-      }
-    });
-  }
+  // public tecnologia(){
+  //   this.tickets = [];
+  //   this.ticketsAll.forEach((value) => {
+  //     // @ts-ignore
+  //     if (value.division_id_division == 1){
+  //       this.tickets.push(value);
+  //     }
+  //   });
+  // }
 
   public general(){
     this.tickets = [];
@@ -250,7 +252,10 @@ export class TicketComponent implements OnInit {
         this.sucursal();
         this.modal = this.modalService.open(content, {size: 'xl'});
       }
+      console.log('a',resp);
     });
+    
+    
   }
 
   public confirmar() {
@@ -398,6 +403,34 @@ export class TicketComponent implements OnInit {
       }
     });
   }
+
+  public mostrarArchivo(dataArchivo){
+    console.log(dataArchivo);
+    let auxiliar=dataArchivo.split(';');
+    console.log(auxiliar);
+    let auxiliar2=auxiliar[0].split('/');
+    console.log(auxiliar2);
+    
+    const link=document.createElement("a");
+    link.href=dataArchivo;
+    let fecha= new Date();
+    let usuario=localStorage.getItem('usuario');
+    let nombre= `${usuario}${fecha.getDay()}-${fecha.getHours()}-${fecha.getMinutes()}-${fecha.getSeconds()}`;
+    if(auxiliar2[1]== 'pdf'){
+      link.download=`${nombre}.pdf`;
+    } else if (auxiliar2[1] =='jpg'){
+      link.download=`${nombre}.jpg`;
+    } else if (auxiliar2[1] =='png'){
+      link.download=`${nombre}.png`;
+    } else if (auxiliar2[1] =='docx'){
+      link.download=`${nombre}.docx`;
+    } else {
+      link.download=`${nombre}.xlsx`;
+    }
+    link.click();
+    // window.open(url,'_blank');
+  }
+
 }
 
 

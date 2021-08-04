@@ -1,8 +1,8 @@
 <div class="container">
   <h2>Tickets</h2>
   <hr>
-  <button class="btn btn-success" (click)="general()">General</button>
-  <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button>
+  <!-- <button class="btn btn-success" (click)="general()">General</button>
+  <button class="btn btn-warning" (click)="tecnologia()">Tecnologias</button> -->
   <div>
     <label for="">Ver todos &nbsp;</label>
     <input type="checkbox" [checked]="ver" (click)="verTodos()">
@@ -31,7 +31,7 @@
           <td>{{ data.prioridad }}</td>
           <td>{{ data.fecha_solicitud | date:"dd/MM/yyyy h:mm:ss"}}</td>
           <td>
-              <button class="btn btn-info btn-sm" (click)="detalle(data.id_ticket, content)">Detalle</button>
+              <button class="btn btn-info btn-sm" (click)="detalle(data, content)">Detalle</button>
               <button class="btn btn-primary btn-sm" (click)="historial(data.numero, content2)">Historial</button>
               <div *ngIf="data.estado != 'Cerrado'">
                 <button class="btn btn-warning btn-sm btn-block" (click)="editar(data.numero, content3)">Editar</button>
@@ -64,6 +64,8 @@
           <h5>Estado: <small>{{ tiket.estado }}</small></h5>
           <h5>Departamento: <small>{{ tiket.departamento }}</small></h5>
           <h5>Sucursal: <small>{{ tiket.sucursal }}</small></h5>
+          <h5>Interno: <small>{{ tiket.interno }}</small></h5>
+          <h5>Archivo: <button class="btn btn-success" (click)="mostrarArchivo(tiket.archivo)"> Abrir Archivo </button> </h5>
         </div>
       </div>
       <hr>

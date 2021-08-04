@@ -45,7 +45,7 @@ export class SolicitudComponent implements OnInit {
       interno: [null, Validators.required],
       departamento: [null, Validators.required],
       //https://www.npmjs.com/package/@rxweb/reactive-form-validators
-      archivo: [null, RxwebValidators.extension({extensions: ['jpg', 'pdf']})],
+      archivo: [null, RxwebValidators.extension({extensions: ['jpg', 'pdf','docx','xlsx']})],
     });
     this.solicitudService.categorias().subscribe((res: any) => {
       if (res.respuesta){
