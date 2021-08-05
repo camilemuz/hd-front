@@ -37,6 +37,7 @@ export class IndexComponent implements OnInit {
       nombre: [null, Validators.required],
       ap_paterno: [null, Validators.required],
       ap_materno: [],
+      ci: [],
       email: [null, [Validators.required, Validators.email]],
       rol: [null, Validators.required],
       division: [null, Validators.required],

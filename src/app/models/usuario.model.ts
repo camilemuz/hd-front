@@ -12,4 +12,5 @@ export class UsuarioModel {
   token:string;
   usuario: string;
   id_ticket: number;
+  ci: string;
 }

@@ -105,6 +105,16 @@
           <input type="text" name="ap_materno" id="ap_materno" class="form-control"
                  formControlName="ap_materno" [(ngModel)]="usuario.ap_materno" style="text-transform:uppercase">
         </div>
+        <div class="col-sm-4">
+          <label>Carnet de Identidad <span class="text-danger">(*)</span>  </label>
+          <input type="text" name="ci" id="ci" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.ci.errors }"
+                 formControlName="ci" [(ngModel)]="usuario.ci" style="text-transform:uppercase">
+          <div *ngIf="submitted && f.ci.errors" class="invalid-feedback">
+            <div *ngIf="f.ci.errors.required">Carnet de Identidad es requerido</div>
+          </div>
+        </div>
+
       </div>
       <div class="form-row">
         <div class="col-sm-4">
