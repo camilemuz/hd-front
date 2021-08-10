@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       email: ['', Validators.required],
-      password: [null, Validators.required],
+      password: [],
     });
     this.usuario = new  UsuarioModel();
     localStorage.clear();

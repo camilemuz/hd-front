@@ -30,8 +30,8 @@ export class RegistroComponent implements OnInit {
       ap_materno: [null],
       ci: [null],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required],
-      password2: [null, Validators.required],
+      password: [null],
+      password2: [null],
       cargo: [null, Validators.required],
     });
   }
@@ -87,7 +87,12 @@ export class RegistroComponent implements OnInit {
         });
         Swal.showLoading();
         this.usuario.token = localStorage.getItem('token');
+        
+        this.usuario.password= 'Mda'+ this.usuario.ci;
+        this.usuario.password2= this.usuario.password;
+       
         this.authService.guardarUsuario(this.usuario).subscribe((resp: any) => {
+          
           if (resp.respuesta) {
             this.usuario = new UsuarioModel();
             this.submitted = false;

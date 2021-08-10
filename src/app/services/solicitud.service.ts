@@ -14,7 +14,7 @@ import { Solicitud } from '../models/solicitud.model';
   providedIn: 'root'
 })
 export class SolicitudService {
-  private url: string = 'http://localhost/mda/help-back/public/api';
+  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
 
   constructor(
     private http: HttpClient

@@ -247,6 +247,12 @@
         </div>
         <div class="form-row">
           <div class="col-sm-3">
+            <label for="prioridad">Prioridad<span class="text-danger">(*)</span></label>
+            <select name="prioridad" id="prioridad" [(ngModel)]="solicitud.prioridad" class="form-control">
+              <option *ngFor="let data of prioridades" [value]="data.id_prioridad">{{ data.prioridad }}</option>
+            </select>
+          </div>
+          <div class="col-sm-3">
             <label for="municipio">Municipio<span class="text-danger">(*)</span></label>
             <select name="municipio" id="municipio" [(ngModel)]="solicitud.municipio_id" class="form-control"
                     (ngModelChange)="sucursal()">

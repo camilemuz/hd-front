@@ -14,6 +14,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
+import { PrioridadModel } from 'src/app/models/prioridad.model';
 
 @Component({
   selector: 'app-ticket',
@@ -35,6 +36,7 @@ export class TicketComponent implements OnInit {
   public municipios: Municipio[] = [];
   public sucursales: Sucursal[] = [];
   public departamentos: Departamento[] = [];
+  public prioridades: PrioridadModel[]=[];
   public agentes: UsuarioModel[] = [];
   public agente: UsuarioModel;
   modal: NgbModalRef;
@@ -215,6 +217,13 @@ export class TicketComponent implements OnInit {
         this.departamentos = res.departamentos;
       }
     });
+    this.solicitudService.prioridad().subscribe((res: any) => {
+      if (res.respuesta) {
+        this.prioridades = res.prioridades;
+        console.log('prioridad-->',res);
+        
+      }
+    });
     this.ticketService.historial(cust).subscribe((resp: any) => {
       if (resp.respuesta) {
         this.ticketHistorico = resp.tickets;
@@ -252,7 +261,7 @@ export class TicketComponent implements OnInit {
         this.sucursal();
         this.modal = this.modalService.open(content, {size: 'xl'});
       }
-      console.log('a',resp);
+      // console.log('a',resp);
     });
     
     

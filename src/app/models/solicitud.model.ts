@@ -12,4 +12,5 @@ export class Solicitud {
   sucursal_id_sucursal: number;
   archivo: any;
   token: string;
+  prioridad:string;
 }
