@@ -83,7 +83,7 @@ export class TicketComponent implements OnInit {
   public detalle(data: TicketModel, content) {
     this.tiket = new TicketModel();
     Object.assign(this.tiket, data);
-    console.log(this.tiket);
+    console.log('ticket',this.tiket);
     // this.tickets.forEach((value) => {
     //   if (value.id_ticket == id) {
     //     this.tiket = value;
@@ -189,7 +189,7 @@ export class TicketComponent implements OnInit {
     this.ticketService.historial(cust).subscribe((resp: any) => {
       if (resp.respuesta) {
         this.ticketHistorico = resp.tickets;
-        console.log(this.ticketHistorico);
+        console.log('historico',this.ticketHistorico);
         this.requerimiento = resp.requerimiento;
         this.modalService.open(content, {size: 'lg'});
       }
@@ -217,17 +217,11 @@ export class TicketComponent implements OnInit {
         this.departamentos = res.departamentos;
       }
     });
-    this.solicitudService.prioridad().subscribe((res: any) => {
-      if (res.respuesta) {
-        this.prioridades = res.prioridades;
-        console.log('prioridad-->',res);
-        
-      }
-    });
+    
     this.ticketService.historial(cust).subscribe((resp: any) => {
       if (resp.respuesta) {
         this.ticketHistorico = resp.tickets;
-        console.log(this.ticketHistorico);
+        console.log('historicos1',this.ticketHistorico);
         this.requerimiento = resp.requerimiento;
         this.modalService.open(content, { size: 'lg' });
       }
@@ -248,6 +242,13 @@ export class TicketComponent implements OnInit {
         this.tipoRequerimientos = res.tipoRequerimientos;
       }
     });
+    this.solicitudService.prioridad().subscribe((res: any) => {
+      if (res.respuesta) {
+        this.prioridades = res.prioridades;
+        // console.log('prioridad-->',res);
+        
+      }
+    });
   }
 
   public editarRequerimiento(content, idRequerimiento: number) {
@@ -260,6 +261,8 @@ export class TicketComponent implements OnInit {
         this.tipoRequerimiento();
         this.sucursal();
         this.modal = this.modalService.open(content, {size: 'xl'});
+        console.log('AA-->',resp);
+        
       }
       // console.log('a',resp);
     });

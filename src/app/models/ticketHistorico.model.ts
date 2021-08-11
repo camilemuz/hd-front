@@ -10,4 +10,6 @@ export class TicketHistoricoModel {
   ap_paterno:string;
   ap_materno:string;
   id_usuario: number;
+  prioridad:string;
+  
 }

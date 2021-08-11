@@ -13,4 +13,5 @@ export class Solicitud {
   archivo: any;
   token: string;
   prioridad:string;
+  id_prioridad:number;
 }

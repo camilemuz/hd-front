@@ -8,4 +8,6 @@ export class RequerimientoModel {
   sucursal: string;
   fecha_registro: string;
   archivo: any;
+  prioridad:string;
+  id_prioridad:number;
 }

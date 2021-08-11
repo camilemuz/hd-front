@@ -19,4 +19,5 @@ export class TicketModel {
   prioridad: string;
   archivo:string;
   interno:string;
+ 
 }

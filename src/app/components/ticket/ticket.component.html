@@ -70,7 +70,8 @@
           <h5>Departamento: <small>{{ tiket.departamento }}</small></h5>
           <h5>Sucursal: <small>{{ tiket.sucursal }}</small></h5>
           <h5>Interno: <small>{{ tiket.interno }}</small></h5>
-          <h5>Archivo: <button class="btn btn-success" (click)="mostrarArchivo(tiket.archivo)"> Abrir Archivo </button> </h5>
+          <h5>Prioridad: <small>{{ tiket.prioridad }}</small></h5>
+          <h5>Archivo:  <button class="btn btn-success" *ngIf="tiket.archivo.length >0" (click)="mostrarArchivo(tiket.archivo)"> Abrir Archivo </button> </h5>
         </div>
       </div>
       <hr>
@@ -207,6 +208,7 @@
           <h5>Sucursal: <small>{{ requerimiento.sucursal }}</small></h5>
           <h5>Usuario: <small>{{ requerimiento.usuario }}</small></h5>
           <h5>Interno: <small>{{ requerimiento.interno }}</small></h5>
+          <h5>Prioridad: <small>{{ requerimiento.prioridad }}</small></h5>
           <h5>Fecha: <small>{{ requerimiento.fecha_registro | date:"dd/MM/yyyy h:mm:ss"}}</small></h5>
         </div>
       </div>
