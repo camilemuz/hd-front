@@ -14,6 +14,10 @@ export class TicketService {
     return this.http.post(`${this.url}/agente/tickets`, cust);
   }
 
+  public listadoAdmin(cust){
+    return this.http.post(`${this.url}/agente/tickets-admin`, cust);
+  }
+
   public listadoFuncionario(cust: any){
     return this.http.post(`${this.url}/funcionario/ver_solicitudes`, cust);
   }

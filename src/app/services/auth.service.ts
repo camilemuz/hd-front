@@ -21,13 +21,13 @@ export class AuthService {
     { url: '/ticket', titulo: 'Tickets' }
   ];
   public menuAdmin = [
-    { url: '/home', titulo: 'Home' },
+    { url: '/home', titulo: 'Inicio' },
     // { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
-    { url: '/ticket', titulo: 'Tickets' },
+    { url: '/ticket-admin', titulo: 'Tickets' },
     // { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
-    { url: '/dashboard', titulo: 'Dashboard' },
+    { url: '/dashboard', titulo: 'Tablero' },
     { url: '/configuracion', titulo: 'Configuración' },
   ];
 

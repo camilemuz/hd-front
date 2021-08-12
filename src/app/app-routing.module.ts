@@ -26,6 +26,7 @@ import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitu
 import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
 import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
 import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
+import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 
 const routes: Routes = [
   { path: '',
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent,  },
       { path: 'solicitud', component: SolicitudComponent,  },
       { path: 'solicitudes', component: SolicitudesComponent,  },
+      { path: 'ticket-admin', component: TicketAdminComponent },
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: 'listado', component: IndexComponent },

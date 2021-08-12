@@ -41,6 +41,7 @@ import { LugarPipe } from './pipes/lugar.pipe';
 import { PrioridadPipe } from './pipes/prioridad.pipe';
 import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     CrearSucursalComponent,
     LugarPipe,
     PrioridadPipe,
-    CrearCargoComponent
+    CrearCargoComponent,
+    TicketAdminComponent
   ],
   imports: [
     BrowserModule,
