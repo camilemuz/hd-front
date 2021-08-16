@@ -10,12 +10,12 @@ export class AuthService {
   private url: string = 'http://213.169.2.45/mda/help-back/public/api';
 
   public menuFuncionario = [
-    { url: '/home', titulo: 'Home'},
+    { url: '/home', titulo: 'Inicio'},
     { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitudes', titulo: 'Solicitudes' },
   ];
   public menuAgente = [
-    { url: '/home', titulo: 'Home' },
+    { url: '/home', titulo: 'Inicio' },
     // { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
     { url: '/ticket', titulo: 'Tickets' }
