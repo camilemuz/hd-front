@@ -17,7 +17,6 @@ export class TicketModel {
   usuario_requerimiento: string;
   id_prioridad: number;
   prioridad: string;
-  archivo:string;
-  interno:string;
- 
+  archivo: string;
+  interno: string;
 }

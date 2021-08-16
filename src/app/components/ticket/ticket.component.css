@@ -17,7 +17,7 @@ tr:first-child {background: #022531; }
 
 tr:nth-child(even) { background: rgba(255, 255, 255, 0.747); }
 
-td:empty {background: hsla(50, 50%, 80%); }
+td:empty {background: rgb(252, 252, 252); }
 
 tr:hover:not(#firstrow), tr:hover td:empty {background:#ff9100; pointer-events: visible;}
 tr:hover:not(#firstrow) { font-weight: 50; box-shadow: 0px 25px 7px rgba(0, 0, 0, 0.5);}

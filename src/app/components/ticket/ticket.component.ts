@@ -180,7 +180,7 @@ export class TicketComponent implements OnInit {
     this.tickets = this.ticketsAll;
   }
 
-  public historial(numero: number, content){
+  public historial(numero: number, content) {
     let cust = {
       email: localStorage.getItem('usuario'),
       token: localStorage.getItem('token'),
