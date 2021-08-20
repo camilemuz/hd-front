@@ -71,7 +71,7 @@ export class SolicitudAgenteComponent implements OnInit {
     this.authService.usuarios().subscribe((res:any)=>{
       if (res.respuesta){
         this.usuarios = res.usuarios;
-        console.log('user', res);
+        // console.log('user', res);
         
       }
 
@@ -185,7 +185,7 @@ export class SolicitudAgenteComponent implements OnInit {
   }
 
   filtroChangeCat(c){
-    console.log('bbbbb',JSON.stringify(c.target.value));
+    // console.log('bbbbb',JSON.stringify(c.target.value));
     this.usuarios.forEach(value =>{
     if(value.id_usuario == c.target.value){
       this.seleccionUser = value;

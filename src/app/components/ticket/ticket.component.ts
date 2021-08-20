@@ -41,6 +41,7 @@ export class TicketComponent implements OnInit {
   public agente: UsuarioModel;
   modal: NgbModalRef;
   
+  
   constructor(
     private ticketService: TicketService,
     private modalService: NgbModal,
@@ -50,6 +51,7 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.listado();
+    
   }
 
   private listado(){
@@ -66,7 +68,7 @@ export class TicketComponent implements OnInit {
       email: localStorage.getItem('usuario'),
       token: localStorage.getItem('token')
     };
-    this.ticketService.listadoAdmin(cust).subscribe((resp: any) => {
+    this.ticketService.listado(cust).subscribe((resp: any) => {
       if (resp.respuesta) {
         this.ticketsAll = resp.tickets;
         this.ticketsAll.forEach((value) => {

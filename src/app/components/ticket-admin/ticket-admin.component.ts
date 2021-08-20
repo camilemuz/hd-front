@@ -25,11 +25,10 @@ export class TicketAdminComponent implements OnInit {
 
   public tickets: TicketModel[] = [];
   public ticketsAll: TicketModel[] = [];
-  public tiket: TicketModel;
+  public tiket: TicketModel;  
   public ticketHistorico: TicketHistoricoModel[] = [];
   public requerimiento: RequerimientoModel;
-  public ver: boolean = false;
-  
+  public ver: boolean = false;  
   public solicitud: Solicitud;
   public categorias: CategoriaModel[] = [];
   public tipoRequerimientos: TipoRequerimiento[] = [];

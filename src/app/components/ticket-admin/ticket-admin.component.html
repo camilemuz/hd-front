@@ -71,7 +71,7 @@
           <h5>Sucursal: <small>{{ tiket.sucursal }}</small></h5>
           <h5>Interno: <small>{{ tiket.interno }}</small></h5>
           <h5>Prioridad: <small>{{ tiket.prioridad }}</small></h5>
-          <h5>Archivo:  <button class="btn btn-success" *ngIf="tiket.archivo.length >0" (click)="mostrarArchivo(tiket.archivo)"> Abrir Archivo </button> </h5>
+          <h5>Archivo:  <button class="btn btn-success" *ngIf="tiket.archivo != undefind && tiket.archivo.length >0" (click)="mostrarArchivo(tiket.archivo)"> Abrir Archivo </button> </h5>
         </div>
       </div>
       <hr>
