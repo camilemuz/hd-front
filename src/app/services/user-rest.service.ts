@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { GLOBAL } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRestService {
-  private url='http://213.169.2.45/mda/help-back/public/api';
-  users: Array<{id: number, nombre: string, ap_paterno: string, ap_materno: string, email: string}> = [];
+// private url='http://213.169.2.45/mda/help-back/public/api';
+private url = GLOBAL.url;  
+users: Array<{id: number, nombre: string, ap_paterno: string, ap_materno: string, email: string}> = [];
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {

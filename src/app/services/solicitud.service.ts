@@ -9,12 +9,14 @@ import { Sucursal } from '../models/sucursal.model';
 import { DivisionModel } from '../models/division.model';
 import { CargoModel } from '../models/cargo.model';
 import { Solicitud } from '../models/solicitud.model';
+import { GLOBAL } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  // private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url = GLOBAL.url;
 
   constructor(
     private http: HttpClient

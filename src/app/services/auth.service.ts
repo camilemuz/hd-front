@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UsuarioModel} from '../models/usuario.model';
+import { GLOBAL } from '../global';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
-
+  // private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url = GLOBAL.url;
+  
   public menuFuncionario = [
     { url: '/home', titulo: 'Inicio'},
     { url: '/solicitud', titulo: 'Solicitud' },
