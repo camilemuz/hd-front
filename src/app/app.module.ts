@@ -42,6 +42,7 @@ import { PrioridadPipe } from './pipes/prioridad.pipe';
 import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.com
     FormsModule,
     NgbModule,
     RxReactiveFormsModule,
+    DataTablesModule
   ],
   providers: [
   ],

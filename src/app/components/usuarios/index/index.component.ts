@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {UsuarioModel} from '../../../models/usuario.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -8,13 +8,14 @@ import {SolicitudService} from '../../../services/solicitud.service';
 import {CargoModel} from '../../../models/cargo.model';
 import {RolModel} from '../../../models/rol.model';
 import {DivisionModel} from '../../../models/division.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
   public usuarios: UsuarioModel[] = [];
   public usuario: UsuarioModel;
   public submitted = false;
@@ -22,6 +23,9 @@ export class IndexComponent implements OnInit {
   public cargos: CargoModel[] = [];
   public roles: RolModel[] = [];
   public divisiones: DivisionModel[] = [];
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(
     private authService: AuthService,
@@ -49,16 +53,22 @@ export class IndexComponent implements OnInit {
     return this.form.controls;
   }
 
-  private index(){
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+
+  }
+
+  private index():void{
     let cust = {
       email: localStorage.getItem('usuario'),
       token: localStorage.getItem('token')
     }
     this.authService.index(cust).subscribe((resp: any) => {
-      console.log(resp);
-      if (resp.respuesta){
+      // console.log(resp);
+      
         this.usuarios = resp.users
-      }
+      
+      this.dtTrigger.next();
     });
   }
 
