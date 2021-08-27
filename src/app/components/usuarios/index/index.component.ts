@@ -36,6 +36,13 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.index();
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
+        
     this.cargaParametros();
     this.form = this.formBuilder.group({
       nombre: [null, Validators.required],
