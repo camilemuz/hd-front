@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {TicketService} from '../../services/ticket.service';
 import {TicketModel} from '../../models/ticket.model';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
@@ -15,13 +15,14 @@ import { CategoriaModel } from 'src/app/models/categoria.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { PrioridadModel } from 'src/app/models/prioridad.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css']
 })
-export class TicketComponent implements OnInit {
+export class TicketComponent implements OnInit, OnDestroy {
   public tickets: TicketModel[] = [];
   public ticketsAll: TicketModel[] = [];
   public tiket: TicketModel;
@@ -40,6 +41,9 @@ export class TicketComponent implements OnInit {
   public agentes: UsuarioModel[] = [];
   public agente: UsuarioModel;
   modal: NgbModalRef;
+
+  dtOptions: DataTables.Settings = {};
+  // dtTrigger: Subject<any> = new Subject<any>();
   
   
   constructor(
@@ -51,7 +55,19 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.listado();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      // pageLength: 6,
+      dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
     
+  }
+
+  ngOnDestroy() {
+    // this.dtTrigger.unsubscribe();
   }
 
   private listado(){
@@ -68,6 +84,7 @@ export class TicketComponent implements OnInit {
       email: localStorage.getItem('usuario'),
       token: localStorage.getItem('token')
     };
+    
     this.ticketService.listado(cust).subscribe((resp: any) => {
       if (resp.respuesta) {
         this.ticketsAll = resp.tickets;
@@ -76,10 +93,12 @@ export class TicketComponent implements OnInit {
           if (value.estado_id_estado != 3) {
             this.tickets.push(value);
           }
+          // this.dtTrigger.next();
         });
       }
       Swal.close();
     });
+   
   }
 
   public detalle(data: TicketModel, content) {

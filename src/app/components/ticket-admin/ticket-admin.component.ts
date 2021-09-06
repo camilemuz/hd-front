@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { Departamento } from 'src/app/models/departamento.model';
 import { Municipio } from 'src/app/models/municipio.model';
@@ -40,6 +41,9 @@ export class TicketAdminComponent implements OnInit {
   public agentes: UsuarioModel[] = [];
   public agente: UsuarioModel;
   modal: NgbModalRef;
+
+  dtOptions: DataTables.Settings = {};
+  // dtTrigger: Subject<any> = new Subject<any>();
   
   constructor(
     private ticketService: TicketService,
@@ -50,6 +54,18 @@ export class TicketAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.listado();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      // pageLength: 6,
+      dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
+  }
+
+  ngOnDestroy() {
+    // this.dtTrigger.unsubscribe();
   }
 
   private listado(){
@@ -73,11 +89,14 @@ export class TicketAdminComponent implements OnInit {
           // @ts-ignore
           if (value.estado_id_estado != 3) {
             this.tickets.push(value);
+            // this.dtTrigger.next();
           }
         });
       }
+      
       Swal.close();
     });
+    
   }
 
   public detalle(data: TicketModel, content) {
