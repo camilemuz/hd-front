@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { Municipio } from 'src/app/models/municipio.model';
 import { Sucursal } from 'src/app/models/sucursal.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
@@ -18,6 +19,9 @@ export class SucursalComponent implements OnInit {
   public municipios:Municipio[]=[];
   public submitted=false;
   public form:FormGroup;
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   
   constructor(
     private parametroService:SolicitudService,
@@ -27,6 +31,14 @@ export class SucursalComponent implements OnInit {
 
   ngOnInit(): void {
     this.index();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 6,
+      dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
     this.cargaParametros();
     this.form = this.formBuilder.group({
       cod: [null, Validators.required],
@@ -41,12 +53,17 @@ export class SucursalComponent implements OnInit {
     return this.form.controls;
   }
 
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+  }
+
   private index(){
     
      this.parametroService.indexsucursal().subscribe((resp: any) => {
       if (resp.respuesta){
         this.sucursales = resp.sucursales;
       }
+      this.dtTrigger.next();
     });
   }
 

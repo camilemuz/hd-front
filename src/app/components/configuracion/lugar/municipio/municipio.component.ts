@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { Departamento } from 'src/app/models/departamento.model';
 import { Municipio } from 'src/app/models/municipio.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
@@ -18,6 +19,9 @@ export class MunicipioComponent implements OnInit {
   public submitted=false;
   public form: FormGroup;
 
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   constructor(
     private parametroService:SolicitudService,
     private modalService: NgbModal,
@@ -26,6 +30,14 @@ export class MunicipioComponent implements OnInit {
 
   ngOnInit(): void {
     this.index();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 6,
+      // dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
     this.form = this.formBuilder.group({
       lugar: [null, Validators.required],
       cod: [null, Validators.required],
@@ -37,13 +49,16 @@ export class MunicipioComponent implements OnInit {
     return this.form.controls;
   }
 
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+  }
+
   private index(){
      this.parametroService.indexmunicipio().subscribe((resp: any) => {
       if (resp.respuesta){
         this.municipios = resp.municipios;
-        
-        
       }
+      this.dtTrigger.next();
     });
   }
 

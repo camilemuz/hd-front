@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { DivisionModel } from 'src/app/models/division.model';
 import { TipoRequerimiento } from 'src/app/models/tipoRequerimiento.model';
@@ -20,6 +21,9 @@ export class TiporequerimientoComponent implements OnInit {
   public divisiones: DivisionModel[] = [];
   public submitted=false;
   public form:FormGroup;
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   
   constructor(
     private parametroService:SolicitudService,
@@ -29,6 +33,14 @@ export class TiporequerimientoComponent implements OnInit {
 
   ngOnInit(): void {
     this.index();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 6,
+      dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
     this.cargaParametros();
     this.form = this.formBuilder.group({
       cod: [null, Validators.required],
@@ -43,6 +55,10 @@ export class TiporequerimientoComponent implements OnInit {
   get f(){
     return this.form.controls;
   }
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+
+  }
 
   private index(){
     
@@ -50,9 +66,8 @@ export class TiporequerimientoComponent implements OnInit {
       console.log(resp);
       if (resp.respuesta){
         this.tiporeqs = resp.tipoRequerimientos;
-
-        
       }
+      this.dtTrigger.next();
     });
   }
 
