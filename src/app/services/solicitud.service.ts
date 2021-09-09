@@ -182,8 +182,11 @@ export class SolicitudService {
     return this.http.post(this.url + '/funcionario/solicitar_req', cust, {headers});
   }
 
-  public Solicitudagente(cust: any): Observable<any>{
-    return this.http.post(this.url + '/funcionario/solicitud_agen', cust);
+  public Solicitudagente(cust:  Solicitud): Observable<any>{
+    let json = JSON.stringify(cust.archivo);
+    console.log(cust);
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(this.url + '/funcionario/solicitud_agen', cust,{headers});
   }
 
   

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { Observable, Subscriber } from 'rxjs';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { Departamento } from 'src/app/models/departamento.model';
 import { Municipio } from 'src/app/models/municipio.model';
@@ -52,6 +54,8 @@ export class SolicitudAgenteComponent implements OnInit {
       media: [null],
       departamento: [null, Validators.required],
       usuario: [null, Validators.required],
+     //https://www.npmjs.com/package/@rxweb/reactive-form-validators
+      archivo: [null, RxwebValidators.extension({extensions: ['jpg', 'pdf','docx','xlsx']})],
     });
     this.solicitudService.categorias().subscribe((res: any) => {
       if (res.respuesta){
@@ -77,7 +81,6 @@ export class SolicitudAgenteComponent implements OnInit {
 
     });
 
-  
 
  
   }
@@ -115,6 +118,34 @@ export class SolicitudAgenteComponent implements OnInit {
       }
     });
   }
+
+
+  public fileChangeEvent($event: Event){
+    const file = ($event.target as HTMLInputElement).files[0];
+    this.convertirToBase64(file);
+  }
+
+  public convertirToBase64(file: File){
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      this.solicitud.archivo = d;
+    });
+  }
+
+  public readFile(file: File, subscriber: Subscriber<any>){
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    }
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+    }
+  }
+
 
   public enviar(){
     
