@@ -55,7 +55,9 @@ export class TicketAdminComponent implements OnInit {
   ngOnInit(): void {
     this.listado();
     this.dtOptions = {
+      ordering:true,
       pagingType: 'full_numbers',
+      "scrollX": true,
       // pageLength: 6,
       dom: 'Bfrtip',
       language: {
