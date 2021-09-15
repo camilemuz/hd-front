@@ -57,7 +57,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     this.listado();
     this.dtOptions = {
       pagingType: 'full_numbers',
-      // pageLength: 6,
+      pageLength: 6,
       dom: 'Bfrtip',
       language: {
         url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'

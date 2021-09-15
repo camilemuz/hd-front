@@ -43,6 +43,13 @@ import { CrearCargoComponent } from './components/configuracion/parametros/cargo
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 import { DataTablesModule } from 'angular-datatables';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { NgSelect2Module } from 'ng-select2';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -92,7 +99,14 @@ import { DataTablesModule } from 'angular-datatables';
     FormsModule,
     NgbModule,
     RxReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxMatSelectSearchModule,
+    BrowserAnimationsModule,
+    NgSelect2Module,
+    AutocompleteLibModule
+    
   ],
   providers: [
   ],

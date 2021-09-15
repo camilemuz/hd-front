@@ -25,6 +25,8 @@ export class SolicitudComponent implements OnInit {
   public departamentos: Departamento[] = [];
 
   public form: FormGroup;
+keyword ="categoria";
+data:any;
 
   constructor(
     private solicitudService: SolicitudService,
@@ -47,11 +49,15 @@ export class SolicitudComponent implements OnInit {
       //https://www.npmjs.com/package/@rxweb/reactive-form-validators
       archivo: [null, RxwebValidators.extension({extensions: ['jpg', 'pdf','docx','xlsx']})],
     });
-    this.solicitudService.categorias().subscribe((res: any) => {
-      if (res.respuesta){
-        this.categorias = res.categorias;
-      }
-    });
+    // this.solicitudService.categorias().subscribe((res: any) => {
+    //   if (res.respuesta){
+    //     this.categorias = res.categorias;
+    //   }
+    // });
+    this.solicitudService.categorias().subscribe(res => this.categorias = res.categorias);
+    console.log(this.categorias,'a');
+    
+
     this.solicitudService.municipios().subscribe((res: any) => {
       if (res.respuesta){
         this.municipios = res.municipios;
@@ -193,5 +199,18 @@ export class SolicitudComponent implements OnInit {
     });
 
   }
+  
 
+  selectEvent(item) {
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+  
+  onFocused(e){
+    // do something when input is focused
+  }
 }
