@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {SolicitudService} from '../../services/solicitud.service';
 import {CategoriaModel} from '../../models/categoria.model';
 import {Solicitud} from '../../models/solicitud.model';
@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Departamento} from '../../models/departamento.model';
 import {RxwebValidators} from '@rxweb/reactive-form-validators';
-import {Observable, Subscriber} from 'rxjs';
+import {Observable, Subject, Subscriber} from 'rxjs';
+import { debounceTime,filter, map} from 'rxjs/operators';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-solicitud',
@@ -25,8 +27,13 @@ export class SolicitudComponent implements OnInit {
   public departamentos: Departamento[] = [];
 
   public form: FormGroup;
-keyword ="categoria";
-data:any;
+
+  keycategoria ="categoria";
+
+
+  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
 
   constructor(
     private solicitudService: SolicitudService,
@@ -213,4 +220,19 @@ data:any;
   onFocused(e){
     // do something when input is focused
   }
+
+
+
+
+  search = (text$: Observable<string>) => text$.pipe(
+    debounceTime(200),
+    map(term => term === '' ? []
+    : this.categorias.filter(v => v.categoria.toLowerCase().indexOf
+      (term.toLowerCase()) > -1).slice(0, 10))
+  )
+  formatter = (x: {categoria: string}) => x.categoria;
+
+
 }
+
+

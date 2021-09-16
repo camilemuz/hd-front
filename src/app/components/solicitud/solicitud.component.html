@@ -8,7 +8,7 @@
           <div class="col-sm-4">
             <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
             <select name="categoria" id="categoria" [(ngModel)]="solicitud.categoria_id" class="form-control"
-                    (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
+             (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
               <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
             </select>
           </div>
@@ -83,7 +83,10 @@
 <div class="ng-autocomplete">
   <ng-autocomplete 
     [data]="categorias"
-    [searchKeyword]="keyword"
+    (selected)='selectEvent($event)'
+    (inputChanged)='onChangeSearch($event)'
+    (inputFocused)='onFocused($event)'
+    [searchKeyword]="keycategoria"
     [itemTemplate]="itemTemplate"
     [notFoundTemplate]="notFoundTemplate">                                 
   </ng-autocomplete>
@@ -95,4 +98,33 @@
   <ng-template #notFoundTemplate let-notFound>
   <div [innerHTML]="notFound"></div>
   </ng-template>
+  </div>
+
+  <!-- <label for="typeahead-focus">Search for a state:</label>
+<input
+  id="typeahead-focus"
+  type="text"
+  class="form-control"
+  [(ngModel)]="model"
+  [ngbTypeahead]="search"
+  (focus)="focus$.next($any($event).target.value)"
+  (click)="click$.next($any($event).target.value)"
+  #instance="ngbTypeahead"
+/>
+<hr>
+<pre>Model: {{ model | json }}</pre>
+   -->
+
+   <div class="form-group">
+    <label>Categoría prueba:</label>
+    <input type="text" formControlName="categoria" 
+    [ngbTypeahead]="search" 
+    [inputFormatter]="formatter" 
+    (focus)="focus$.next($any($event).target.value)"
+  (click)="click$.next($any($event).target.value)"
+    class="form-control" placeholder="Empleado" >
+    <div *ngIf="solicitud.categoria_id"
+         class="form-text text-muted">
+      
+    </div>
   </div>
