@@ -9,8 +9,8 @@ import Swal from 'sweetalert2';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Departamento} from '../../models/departamento.model';
 import {RxwebValidators} from '@rxweb/reactive-form-validators';
-import {Observable, Subject, Subscriber} from 'rxjs';
-import { debounceTime,filter, map} from 'rxjs/operators';
+import {merge, Observable, OperatorFunction, Subject, Subscriber} from 'rxjs';
+import { debounceTime,distinctUntilChanged,filter, map} from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -28,7 +28,7 @@ export class SolicitudComponent implements OnInit {
 
   public form: FormGroup;
 
-  keycategoria ="categoria";
+ 
 
 
   @ViewChild('instance', {static: true}) instance: NgbTypeahead;
@@ -56,15 +56,12 @@ export class SolicitudComponent implements OnInit {
       //https://www.npmjs.com/package/@rxweb/reactive-form-validators
       archivo: [null, RxwebValidators.extension({extensions: ['jpg', 'pdf','docx','xlsx']})],
     });
-    // this.solicitudService.categorias().subscribe((res: any) => {
-    //   if (res.respuesta){
-    //     this.categorias = res.categorias;
-    //   }
-    // });
-    this.solicitudService.categorias().subscribe(res => this.categorias = res.categorias);
-    console.log(this.categorias,'a');
+    this.solicitudService.categorias().subscribe((res: any) => {
+      if (res.respuesta){
+        this.categorias = res.categorias;
+      }
+    });
     
-
     this.solicitudService.municipios().subscribe((res: any) => {
       if (res.respuesta){
         this.municipios = res.municipios;
@@ -207,32 +204,25 @@ export class SolicitudComponent implements OnInit {
 
   }
   
+  // search = (text$: Observable<string>) => text$.pipe(
+  //   debounceTime(200),
+  //   map(term => term === '' ? []
+  //   : this.categorias.filter(v => v.categoria.toLowerCase().indexOf
+  //     (term.toLowerCase()) > -1).slice(0, 10))
+  // );
+  // formatter = (x: {categoria: string}) => x.categoria;
 
-  selectEvent(item) {
-    // do something with selected item
+  search = (text$: Observable<string>) => {
+    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
+    const inputFocus$ = this.focus$;
+
+    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+      map(term => (term === '' ? []
+        : this.categorias.filter(v => v.categoria.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
+    );
   }
-
-  onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
-  }
-  
-  onFocused(e){
-    // do something when input is focused
-  }
-
-
-
-
-  search = (text$: Observable<string>) => text$.pipe(
-    debounceTime(200),
-    map(term => term === '' ? []
-    : this.categorias.filter(v => v.categoria.toLowerCase().indexOf
-      (term.toLowerCase()) > -1).slice(0, 10))
-  )
   formatter = (x: {categoria: string}) => x.categoria;
-
-
 }
 
 

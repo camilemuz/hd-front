@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-import { Observable, Subscriber } from 'rxjs';
+import { merge, Observable, Subject, Subscriber } from 'rxjs';
+import { debounceTime,distinctUntilChanged,filter, map} from 'rxjs/operators';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { Departamento } from 'src/app/models/departamento.model';
 import { Municipio } from 'src/app/models/municipio.model';
@@ -30,6 +32,11 @@ export class SolicitudAgenteComponent implements OnInit {
   public seleccionUser:any;
 
   public form: FormGroup;
+
+
+  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
 
   constructor(
     private solicitudService: SolicitudService,
@@ -228,6 +235,20 @@ export class SolicitudAgenteComponent implements OnInit {
    
        
      }
+
+
+     search = (text$: Observable<string>) => {
+      const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+      const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
+      const inputFocus$ = this.focus$;
+  
+      return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+        map(term => (term === '' ? []
+          : this.usuarios.filter(v => v.email.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
+      );
+    }
+    formatter = (x: {email: string}) => x.email;
+  
 
      
 }

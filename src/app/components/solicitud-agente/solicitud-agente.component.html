@@ -57,11 +57,23 @@
 
             <div class="col-sm-3">
                 <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
-                <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="form-control"
+                <!-- <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="form-control"
                         formControlName="usuario" (change)="filtroChangeCat($event)">
                   <option *ngFor="let data of usuarios" [value]="data.id_usuario">{{ data.email }}</option>
-                </select>
+                </select> -->
+                <input type="text" formControlName="usuario" 
+                [ngbTypeahead]="search" 
+                [inputFormatter]="formatter" 
+                [resultTemplate]="rt" 
+                class="form-control" 
+                #instance="ngbTypeahead"
+                />
+
               </div>
+                <!--Template para autocompletar-->
+                <ng-template #rt let-r="result" let-t="term">
+                  <ngb-highlight [result]="r.email" [term]="t"></ngb-highlight>
+                </ng-template>
 
 
               <div class="col-sm-4">
