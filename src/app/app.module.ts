@@ -27,7 +27,7 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
 import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
 import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
 import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
-import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
+
 import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
 import { CrearDepartamentoComponent } from './components/configuracion/lugar/departamento/crear-departamento/crear-departamento.component';
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
@@ -49,6 +49,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { NgSelect2Module } from 'ng-select2';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
 
 
 @NgModule({
