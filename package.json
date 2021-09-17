@@ -30,6 +30,7 @@
     "angular-datatables": "^12.0.0",
     "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^4.5.0",
+    "bootstrap-select": "^1.13.18",
     "bootstrap-v4-dev": "^4.0.0-alpha.6",
     "datatables.net": "^1.11.2",
     "datatables.net-bs4": "^1.11.2",

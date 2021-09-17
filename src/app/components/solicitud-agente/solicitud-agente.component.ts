@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
@@ -14,6 +14,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import Swal from 'sweetalert2';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-solicitud-agente',
@@ -33,10 +34,13 @@ export class SolicitudAgenteComponent implements OnInit {
 
   public form: FormGroup;
 
-
-  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
-  focus$ = new Subject<string>();
-  click$ = new Subject<string>();
+  @ViewChild('selectList', { static: false }) selectList: ElementRef;
+  onChangeofOptions(newGov) {
+    console.log(newGov);
+ }
+  // @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  // focus$ = new Subject<string>();
+  // click$ = new Subject<string>();
 
   constructor(
     private solicitudService: SolicitudService,
@@ -82,7 +86,7 @@ export class SolicitudAgenteComponent implements OnInit {
     this.authService.usuarios().subscribe((res:any)=>{
       if (res.respuesta){
         this.usuarios = res.usuarios;
-        // console.log('user', res);
+        console.log('user', res);
         
       }
 
@@ -236,19 +240,43 @@ export class SolicitudAgenteComponent implements OnInit {
        
      }
 
+     filterItem(event){
+      if(!event){
+          this.usuarios = this.seleccionUser;
+      } // when nothing has typed*/   
+      if (typeof event === 'string') {
+          console.log(event);
+          this.usuarios = this.seleccionUser.filter(a => a.toLowerCase()
+                                             .startsWith(event.toLowerCase())); 
+      }
+      console.log(this.usuarios.length);
+      this.selectList.nativeElement.size = this.usuarios.length + 1 ;       
+   }   
+   
 
-     search = (text$: Observable<string>) => {
-      const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-      const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-      const inputFocus$ = this.focus$;
+
+
+
+
+    //  search = (text$: Observable<string>) => {
+    //   const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+    //   const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
+    //   const inputFocus$ = this.focus$;
   
-      return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-        map(term => (term === '' ? []
-          : this.usuarios.filter(v => v.email.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-      );
-    }
-    formatter = (x: {email: string}) => x.email;
+    //   return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+    //     map(term => (term === '' ? []
+    //       : this.usuarios.filter(v => v.id_usuario.valueOf().(term.toLowerCase()) > -1)).slice(0, 10))
+    //   );
+    // }
+    // formatter = (x: {email: string}) => x.email;
   
 
+  // search = (text$: Observable<string>) => text$.pipe(
+  //   debounceTime(200),
+  //   map(term => term === '' ? []
+  //   : this.usuarios.filter(v => v.email.indexOf
+  //     (term) > -1).slice(0, 10))
+  // );
+  // formatter = (x: {email: string}) => x.email;
      
 }

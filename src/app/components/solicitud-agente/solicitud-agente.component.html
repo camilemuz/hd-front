@@ -57,23 +57,32 @@
 
             <div class="col-sm-3">
                 <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
-                <!-- <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="form-control"
+                <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="selectpicker form-control" data-live-search="true" 
                         formControlName="usuario" (change)="filtroChangeCat($event)">
-                  <option *ngFor="let data of usuarios" [value]="data.id_usuario">{{ data.email }}</option>
-                </select> -->
-                <input type="text" formControlName="usuario" 
+                  <option  *ngFor="let data of usuarios" [value]="data.id_usuario">{{ data.email }}</option>
+                </select>
+                <script>
+                  $('.selectpicker').selectpicker();
+                </script>
+               
+
+                <!-- <input type="text" formControlName="usuario" 
+                name="usuario" 
+                id="usuario"
+                (change)="filtroChangeCat($event)"
+                [(ngModel)]="solicitud.usuario_id_usuario"
                 [ngbTypeahead]="search" 
                 [inputFormatter]="formatter" 
                 [resultTemplate]="rt" 
                 class="form-control" 
                 #instance="ngbTypeahead"
-                />
+                /> -->
 
               </div>
                 <!--Template para autocompletar-->
-                <ng-template #rt let-r="result" let-t="term">
+                <!-- <ng-template #rt let-r="result" let-t="term">
                   <ngb-highlight [result]="r.email" [term]="t"></ngb-highlight>
-                </ng-template>
+                </ng-template> -->
 
 
               <div class="col-sm-4">
@@ -107,3 +116,4 @@
   </div>
   
   
+
