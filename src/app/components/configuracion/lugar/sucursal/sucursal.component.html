@@ -1,0 +1,122 @@
+    
+    <div class="container">
+        <h1>Sucursales</h1>
+        <hr> 
+    
+        <div class="row">
+            <label class="col-sm-8 control-label" for="singlebutton"></label>
+                <div class=" row col-md-3">
+                    <button   type="button"  
+                    routerLink="/crear-sucursal"  
+                    class="btn btn-primary btn-lg btn-block" style="background-color: #ff9100;"  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+                      </svg>
+                      Añadir Sucursal 
+                    </button>
+                </div>
+        </div>
+    <br>
+        <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->
+            <!-- <table  class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes"> -->
+              <table  class="table table-striped table-hover " id="racetimes" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+               <thead>
+                <tr id="firstrow">
+                    
+                    <th scope="col">#</th>
+                    <th scope="col">cod</th>
+                    <th scope="col">Sucursal</th>
+                    <th scope="col">Municipio</th>                    
+                    <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of sucursales;let index=index">
+                    
+                    <td>{{index +1}}</td>
+                    <td>{{data.cod}}</td>
+                    <td>{{data.sucursal}}</td>      
+                    <td>{{data.municipio_id_lugar | lugar}}</td>             
+                                      
+                    
+                   
+                    <td>
+                        <div>
+                            <button class="btn btn-outline-dark btn-sm" (click)="accionEditar(content, data)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                </svg>
+                                &nbsp; Editar
+                              </button>&nbsp;
+                              <button class="btn btn-outline-dark btn-sm" (click)="eliminar(data)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                                &nbsp; Eliminar
+                              </button>
+                        </div>
+                    </td>
+                </tr>
+              </tbody>  
+            </table>
+            <!-- </div> -->
+            
+        </div>
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header bg-success text-white">
+              <h4 class="modal-title">Editar Sucursal</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <div class="modal-body">
+            <form [formGroup]="form" (ngSubmit)="registrar()">
+                <div class="form-row">
+                  <div class="col-sm-4">
+                    <label>Sucursal <span class="text-danger">(*)</span>  </label>
+                    <input type="text" name="sucursal" id="sucursal" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.sucursal.errors }"
+                           formControlName="sucursal" [(ngModel)]="sucursal.sucursal" style="text-transform:uppercase">
+                    <div *ngIf="submitted && f.sucursal.errors" class="invalid-feedback">
+                      <div *ngIf="f.sucursal.errors.required">Sucursal es requerida</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label>Código <span class="text-danger">(*)</span>  </label>
+                    <input type="text" name="cod" id="cod" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
+                           formControlName="cod" [(ngModel)]="sucursal.cod" style="text-transform:uppercase">
+                    <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                      <div *ngIf="f.cod.errors.required">Código es requerido</div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-sm-4">
+                    <label>Municipio<span class="text-danger">(*)</span></label>
+                    <select name="municipio" id="municipio" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.municipio.errors }"
+                            formControlName="municipio" [(ngModel)]="sucursal.municipio_id_lugar">
+                      <option *ngFor="let data of municipios" [value]="data.id_lugar">{{ data.lugar }}</option>
+                    </select>
+                    <div *ngIf="submitted && f.municipio.errors" class="invalid-feedback">
+                      <div *ngIf="f.municipio.errors.required">Municpio es requerido</div>
+                    </div>
+                  </div>
+                 
+                    <div class="form-row mt-2">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4 text-right">
+                        <button class="btn btn-success btn-lg" type="submit">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+         </div>
+    </ng-template>
+    
+    
+       
+    

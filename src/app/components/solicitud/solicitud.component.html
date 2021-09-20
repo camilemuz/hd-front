@@ -3,12 +3,12 @@
   <hr>
   <div class="row">
     <div class="col">
-      <form [formGroup]="form" (ngSubmit)="enviar()">
+      <form [formGroup]="form" (ngSubmit)="enviar()" enctype="multipart/form-data">
         <div class="form-row">
           <div class="col-sm-4">
             <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
             <select name="categoria" id="categoria" [(ngModel)]="solicitud.categoria_id" class="form-control"
-                    (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
+             (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
               <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
             </select>
           </div>
@@ -54,13 +54,25 @@
             <input type="text" class="form-control" [(ngModel)]="solicitud.interno" name="interno"
                    id="interno" formControlName="interno">
           </div>
+
+         
+            <div class="col-sm-4">
+              
+                <label for="arvhivo">Adjuntar un archivo</label>
+                <input name="archivo" id="archivo" [(ngModel)]="solicitud.archivo" type="file"
+                class="form-control" formControlName="archivo" (change)="fileChangeEvent($event)">
+                <!-- <p class="help-block">Puede agregar algú</p> -->
+              
+        </div> 
+      
+
         </div>
         <div class="form-row mt-2">
           <div class="col-sm-4"></div>
           <div class="col-sm-4"></div>
           <div class="col-sm-4 text-right">
-            <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
-            <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
+            <button class="btn btn btn-lg" type="button" (click)="limpiar()" style="background-color: #2075ad;">Limpiar</button>
+            <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #2b3047ce;">Registrar</button>
           </div>
         </div>
       </form>
@@ -68,3 +80,54 @@
   </div>
 </div>
 
+<!-- <div class="ng-autocomplete">
+  <ng-autocomplete 
+    [data]="categorias"
+    (selected)='selectEvent($event)'
+    (inputChanged)='onChangeSearch($event)'
+    (inputFocused)='onFocused($event)'
+    [searchKeyword]="keycategoria"
+    [itemTemplate]="itemTemplate"
+    [notFoundTemplate]="notFoundTemplate">                                 
+  </ng-autocomplete> -->
+  
+  <!-- <ng-template #itemTemplate let-data>
+  <a [innerHTML]="data.categorias"></a>
+  </ng-template>
+  
+  <ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+  </ng-template>
+  </div> -->
+
+  <!-- <label for="typeahead-focus">Search for a state:</label>
+<input
+  id="typeahead-focus"
+  type="text"
+  class="form-control"
+  [(ngModel)]="model"
+  [ngbTypeahead]="search"
+  (focus)="focus$.next($any($event).target.value)"
+  (click)="click$.next($any($event).target.value)"
+  #instance="ngbTypeahead"
+/>
+<hr>
+<pre>Model: {{ model | json }}</pre>
+   -->
+
+   <!-- <div class="form-group">
+    <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
+    <input type="text" formControlName="categoria" 
+    [ngbTypeahead]="search" 
+    [inputFormatter]="formatter" 
+    [resultTemplate]="rt" 
+    class="form-control" 
+    #instance="ngbTypeahead"
+    />
+    
+  </div>
+  <!--Template para autocompletar-->
+  
+<!-- <ng-template #rt let-r="result" let-t="term">
+  <ngb-highlight [result]="r.categoria" [term]="t"></ngb-highlight>
+</ng-template>  -->

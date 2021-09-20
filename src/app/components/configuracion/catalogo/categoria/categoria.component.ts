@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { CategoriaModel } from 'src/app/models/categoria.model';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import Swal from 'sweetalert2';
@@ -10,12 +11,15 @@ import Swal from 'sweetalert2';
   templateUrl: './categoria.component.html',
   styleUrls: ['./categoria.component.css']
 })
-export class CategoriaComponent implements OnInit {
+export class CategoriaComponent implements OnInit, OnDestroy {
 
   public categorias: CategoriaModel[] = [];
   public categoria: CategoriaModel;
   public submitted = false;
   public form: FormGroup;
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   
   constructor(
     private parametroService:SolicitudService,
@@ -26,12 +30,20 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.index();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 6,
+      // dom: 'Bfrtip',
+      language: {
+        url:'//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'
+      },
+    };
     this.form = this.formBuilder.group({
       categoria: [null, Validators.required],
       cod: [null, Validators.required],
     
     });
-    this.categoria=new CategoriaModel();
+   
   }
 
 
@@ -39,21 +51,22 @@ export class CategoriaComponent implements OnInit {
     return this.form.controls;
   }
 
+  ngOnDestroy() {
+    this.dtTrigger.unsubscribe();
+
+  }
+
   private index(){
-    let cust = {
-      email: localStorage.getItem('usuario'),
-      token: localStorage.getItem('token')
-    }
-     this.parametroService.indexcat(cust).subscribe((resp: any) => {
+    this.parametroService.categorias().subscribe((resp: any) => {
       if (resp.respuesta){
         this.categorias = resp.categorias;
       }
+      this.dtTrigger.next();
     });
   }
 
  
   private accionEditar(content: any,categoria:CategoriaModel){
-
     this.categoria=new CategoriaModel();
     this.categoria=categoria;
     this.modalService.open(content,{size:'lg'});
@@ -75,8 +88,8 @@ export class CategoriaComponent implements OnInit {
       if(resp.respuesta){
         this.modalService.dismissAll();
         this.index();
-        
-        
+
+
       }
     })
     
@@ -93,18 +106,20 @@ export class CategoriaComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        
+
         this.parametroService.eliminarcategoria(categoria).subscribe((resp: any) => {
           if (resp.respuesta){
             Swal.fire(resp.mensaje, '', 'success');
             this.index();
           }else{
             Swal.fire('Cancelado', '', 'info')
-          }
+          } 
         })
       }
     })
   }
+
+
 
 
   

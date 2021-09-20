@@ -27,12 +27,30 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
 import { DepartamentoComponent } from './components/configuracion/lugar/departamento/departamento.component';
 import { MunicipioComponent } from './components/configuracion/lugar/municipio/municipio.component';
 import { CargoComponent } from './components/configuracion/parametros/cargo/cargo.component';
-import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
+
 import { CrearCategoriaComponent } from './components/configuracion/catalogo/categoria/crear-categoria/crear-categoria.component';
 import { CrearDepartamentoComponent } from './components/configuracion/lugar/departamento/crear-departamento/crear-departamento.component';
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
 import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
+import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
+import { CategoriaPipe } from './pipes/categoria.pipe';
+import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
+import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
+import { LugarPipe } from './pipes/lugar.pipe';
+import { PrioridadPipe } from './pipes/prioridad.pipe';
+import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
+import { DataTablesModule } from 'angular-datatables';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { NgSelect2Module } from 'ng-select2';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { RegistroAdminComponent } from './components/usuarios/registro-admin/registro-admin.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +82,15 @@ import { TiporequerimientoComponent } from './components/configuracion/catalogo/
     CrearDepartamentoComponent,
     CrearMunicipioComponent,
     TiporequerimientoComponent,
-    CrearTiporeqComponent
+    CrearTiporeqComponent,
+    SolicitudAgenteComponent,
+    CategoriaPipe,
+    SucursalComponent,
+    CrearSucursalComponent,
+    LugarPipe,
+    PrioridadPipe,
+    CrearCargoComponent,
+    TicketAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +98,16 @@ import { TiporequerimientoComponent } from './components/configuracion/catalogo/
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    RxReactiveFormsModule,
+    DataTablesModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxMatSelectSearchModule,
+    BrowserAnimationsModule,
+    NgSelect2Module,
+    AutocompleteLibModule
+    
   ],
   providers: [
   ],

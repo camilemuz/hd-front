@@ -12,12 +12,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
                       </svg>
-                      &nbsp; Crear Usuario </button>
+                      &nbsp; Crear Municipio </button>
                 </div>
         </div>
     <br>
         <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> -->
-            <table  class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes">
+            <!-- <table  class="table table-striped table-hover table-responsive table-wrapper-scroll-y my-custom-scrollbar" id="racetimes"> -->
+              <table  class="table table-striped table-hover " id="racetimes" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
                 <tr id="firstrow">
                     
                     <th scope="col">ID</th>
@@ -25,7 +27,8 @@
                     <th scope="col">Nombre Municipio</th>
                     <th scope="col">Acción</th>
                 </tr>
-    
+              </thead>
+              <tbody>
                 <tr *ngFor="let row of municipios">
                     
                     <td>{{row.id_lugar}}</td>
@@ -34,14 +37,14 @@
                    
                     <td>
                         <div>
-                            <button class="btn btn-warning btn-sm" (click)="accionEditar(content, data)">
+                            <button class="btn btn-outline-dark btn-sm" (click)="accionEditar(content, row)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                 </svg>
                                 &nbsp; Editar
                               </button>
                               &nbsp;
-                              <button class="btn btn-danger btn-sm" (click)="eliminar(data)">
+                              <button class="btn btn-outline-dark btn-sm" (click)="eliminar(row)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                                 </svg>
@@ -50,8 +53,8 @@
                         </div>
                     </td>
                 </tr>
-                
-                </table>
+              </tbody> 
+             </table>
             <!-- </div> -->
             
         </div>

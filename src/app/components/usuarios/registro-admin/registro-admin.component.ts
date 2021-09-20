@@ -31,7 +31,8 @@ export class RegistroAdminComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombre: [null, Validators.required],
       ap_paterno: [null, Validators.required],
-      ap_materno: [],
+      ap_materno: [null],
+      ci: [null],
       email: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required],
       password2: [null, Validators.required],

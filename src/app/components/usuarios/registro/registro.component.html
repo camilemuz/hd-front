@@ -28,6 +28,16 @@
               <input type="text" name="ap_materno" id="ap_materno" class="form-control"
                      formControlName="ap_materno" [(ngModel)]="usuario.ap_materno" style="text-transform:uppercase">
             </div>
+            <div class="col-sm-4">
+              <label>Carnet de Identidad <span class="text-danger">(*)</span>  </label>
+              <input type="text" name="ci" id="ci" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.ci.errors }"
+                     formControlName="ci" [(ngModel)]="usuario.ci" style="text-transform:uppercase">
+              <div *ngIf="submitted && f.ci.errors" class="invalid-feedback">
+                <div *ngIf="f.ci.errors.required">Carnet de Identidad es requerido</div>
+              </div>
+            </div>
+
           </div>
           <div class="form-row">
             <div class="col-sm-4">
@@ -40,7 +50,7 @@
                 <div *ngIf="f.email.errors.email">Email debe ser una dirección de correo electrónico válida</div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <label>Password<span class="text-danger">(*)</span></label>
               <input type="password" name="password" id="password" class="form-control"
                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -48,8 +58,8 @@
               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Password es requerido</div>
               </div>
-            </div>
-            <div class="col-sm-4">
+            </div> -->
+            <!-- <div class="col-sm-4">
               <label>Repite Password<span class="text-danger">(*)</span></label>
               <input type="password" name="password2" id="password2" class="form-control"
                      [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
@@ -57,7 +67,7 @@
               <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
                 <div *ngIf="f.password2.errors.required">Repetir la contraseña</div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="form-row">
             <div class="col-sm-4">
@@ -67,17 +77,17 @@
                       formControlName="cargo" [(ngModel)]="usuario.cargo_id_cargo">
                 <option *ngFor="let data of cargos" [value]="data.id_cargo">{{ data.cargo }}</option>
               </select>
-              <div *ngIf="submitted && f.cargo.errors" class="invalid-feedback">
+              <!-- <div *ngIf="submitted && f.cargo.errors" class="invalid-feedback">
                 <div *ngIf="f.cargo.errors.required">Repetir la contraseña</div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="form-row mt-2">
             <div class="col-sm-4"></div>
             <div class="col-sm-4"></div>
             <div class="col-sm-4 text-right">
-              <button class="btn btn-success btn-lg" type="button" (click)="limpiar()" >Limpiar</button>
-              <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #c78409;">Registrar</button>
+              <button class="btn btn btn-lg" type="button" (click)="limpiar()" style="background-color: #2075ad;">Limpiar</button>
+            <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #2b3047ce;">Registrar</button>
             </div>
           </div>
         </form>

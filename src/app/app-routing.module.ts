@@ -22,18 +22,27 @@ import { CrearDepartamentoComponent } from './components/configuracion/lugar/dep
 import { CrearMunicipioComponent } from './components/configuracion/lugar/municipio/crear-municipio/crear-municipio.component';
 import { TiporequerimientoComponent } from './components/configuracion/catalogo/tiporequerimiento/tiporequerimiento.component';
 import { CrearTiporeqComponent } from './components/configuracion/catalogo/tiporequerimiento/crear-tiporeq/crear-tiporeq.component';
+import { SolicitudAgenteComponent } from './components/solicitud-agente/solicitud-agente.component';
+import { CrearSucursalComponent } from './components/configuracion/lugar/sucursal/crear-sucursal/crear-sucursal.component';
+import { SucursalComponent } from './components/configuracion/lugar/sucursal/sucursal.component';
+import { CrearCargoComponent } from './components/configuracion/parametros/cargo/crear-cargo/crear-cargo.component';
+import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 
 const routes: Routes = [
   { path: '',
     component: UsuarioComponent,
     children: [
-      { path: 'crear-tiporeq', component: CrearTiporeqComponent },
+      { path: 'solicitud-agente', component:SolicitudAgenteComponent },
+      { path: 'crear-sucursal', component: CrearSucursalComponent },
+      { path: 'sucursal', component: SucursalComponent },
+      { path: 'crear-tiporeq', component: CrearTiporeqComponent },     
       { path: 'tiporequerimiento', component: TiporequerimientoComponent },
       { path: 'crear-municipio', component: CrearMunicipioComponent },
       { path: 'crear-departamento', component: CrearDepartamentoComponent },
       { path: 'crear-categoria', component: CrearCategoriaComponent },
       { path: 'registro-admin', component: RegistroAdminComponent },
       { path: 'cargo', component: CargoComponent },
+      { path: 'crear-cargo', component: CrearCargoComponent },
       { path: 'departamento', component: DepartamentoComponent },
       { path: 'municipio', component: MunicipioComponent },
       { path: 'categoria', component: CategoriaComponent },
@@ -41,10 +50,11 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent,  },
       { path: 'solicitud', component: SolicitudComponent,  },
       { path: 'solicitudes', component: SolicitudesComponent,  },
+      { path: 'ticket-admin', component: TicketAdminComponent },
       { path: 'ticket', component: TicketComponent },
       { path: 'home', component: HomeComponent },
       { path: 'listado', component: IndexComponent },
-      { path: '', redirectTo: 'solicitud', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
     canActivate: [AuthGuard]
   },
@@ -54,7 +64,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -38,13 +38,13 @@ export class CrearMunicipioComponent implements OnInit {
     return this.form.controls;
   }
 
-  private cargaParametros() {
-    this.parametroService.municipios().subscribe((res: any) => {
-      if (res.respuesta) {
-        this.municipios = res.municipios;
-      }
-    });
-  }
+  // private cargaParametros() {
+  //   this.parametroService.municipios().subscribe((res: any) => {
+  //     if (res.respuesta) {
+  //       this.municipios = res.municipio;
+  //     }
+  //   });
+  // }
 
   public registrar() {
     this.submitted = true;
@@ -60,7 +60,7 @@ export class CrearMunicipioComponent implements OnInit {
     this.convertirMayuscula();
     Swal.fire({
       title: 'Pregunta',
-      text: '¿Está seguro de guardar el Municipio?',
+      text: '¿Está seguro de guardar la Municipio?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si',
@@ -91,7 +91,7 @@ export class CrearMunicipioComponent implements OnInit {
             });
             Toast.fire({
               icon: 'success',
-              title: 'Municipio creada con exito'
+              title: 'Municipio creado con exito'
             });
             
           }else{
@@ -117,6 +117,7 @@ export class CrearMunicipioComponent implements OnInit {
     this.municipio = new Municipio();
     this.submitted = false;
   }
+
 
  
 

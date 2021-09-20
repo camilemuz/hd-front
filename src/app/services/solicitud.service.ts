@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { CategoriaModel } from '../models/categoria.model';
 import { Departamento } from '../models/departamento.model';
 import { Municipio } from '../models/municipio.model';
 import {TipoRequerimiento} from '../models/tipoRequerimiento.model';
+import { Sucursal } from '../models/sucursal.model';
+import { DivisionModel } from '../models/division.model';
+import { CargoModel } from '../models/cargo.model';
+import { Solicitud } from '../models/solicitud.model';
+import { GLOBAL } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  // private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url = GLOBAL.url;
 
   constructor(
     private http: HttpClient
@@ -40,8 +46,8 @@ export class SolicitudService {
   public requerimientos (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/tipo_requerimiento/' + id);
   }
-  public indextiporeq(cust): Observable<any>{
-    return this.http.post(this.url + '/parametros/indextiporeq',cust);
+  public indextiporeq(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indextiporeq');
   }
 
   public guardartiporeq(cust: any): Observable<any>{
@@ -49,7 +55,7 @@ export class SolicitudService {
   }
 
   public editartiporeq(id: number, TipoRequerimiento: TipoRequerimiento): Observable<any>{
-    return this.http.put(this.url + '/parametros/updattiporeq/'+ id, TipoRequerimiento);
+    return this.http.put(this.url + '/parametros/updatetiporeq/'+ id, TipoRequerimiento);
   }
 
   public eliminartiporeq( tipoRequerimiento: TipoRequerimiento): Observable<any>{
@@ -60,8 +66,8 @@ export class SolicitudService {
   public municipios (): Observable<any>{
     return this.http.get(this.url + '/parametros/municipio');
   }
-  public indexmunicipio(cust): Observable<any>{
-    return this.http.post(this.url + '/parametros/indexmun',cust);
+  public indexmunicipio(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexmun');
   }
 
   public guardarmun(cust: any): Observable<any>{
@@ -79,6 +85,21 @@ export class SolicitudService {
 
   public sucursales (id: number): Observable<any>{
     return this.http.get(this.url + '/parametros/sucursal/' + id);
+  }
+  public indexsucursal(): Observable<any>{
+    return this.http.get(this.url + '/parametros/indexsucursal');
+  }
+
+  public guardarsucursal(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storesucursal', cust);
+  }
+
+  public editarsucursal(id: number, sucursal: Sucursal): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatesucursal/'+ id, sucursal);
+  }
+
+  public eliminarsucursal( sucursal: Sucursal): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminarsucursal',sucursal);
   }
 
 
@@ -99,23 +120,83 @@ export class SolicitudService {
   }
 
   public eliminarDpto( departamento: Departamento): Observable<any>{
-    return this.http.post(this.url + '/parametros/eliminardepto',departamento);
+    return this.http.post(this.url + '/parametros/eliminardpto',departamento);
   }
 
+
+  
   public divisiones (): Observable<any>{
     return this.http.get(this.url + '/parametros/division');
   }
+  public indexdivision(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexdivision',cust);
+  }
+
+  public storedivision(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storedivision', cust);
+  }
+
+  public updatedivision(id: number, division: DivisionModel): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatedivision/'+ id, division);
+  }
+
+  public eliminardivision( division: DivisionModel): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminardivision',division);
+  }
+
+
+  public prioridad (): Observable<any>{
+    return this.http.get(this.url + '/parametros/prioridad');
+  }
+
+
 
   public cargos (): Observable<any>{
     return this.http.get(this.url + '/parametros/cargo');
   }
+  public indexcargo(cust): Observable<any>{
+    return this.http.post(this.url + '/parametros/indexcargo',cust);
+  }
+
+  public storecargo(cust: any): Observable<any>{
+    return this.http.post(this.url + '/parametros/storecargo', cust);
+  }
+
+  public updatecargo(id: number, cargo: CargoModel): Observable<any>{
+    return this.http.put(this.url + '/parametros/updatecargo/'+ id, cargo);
+  }
+
+  public eliminarcargo( cargo: CargoModel): Observable<any>{
+    return this.http.post(this.url + '/parametros/eliminarcargo',cargo);
+  }
+
 
   public roles (): Observable<any>{
     return this.http.get(this.url + '/parametros/rol');
   }
 
-  public guardarSolicitud(cust: any): Observable<any>{
-    return this.http.post(this.url + '/funcionario/solicitar_req', cust);
+  public guardarSolicitud(cust: Solicitud): Observable<any>{
+    let json = JSON.stringify(cust.archivo);
+    console.log(cust);
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(this.url + '/funcionario/solicitar_req', cust, {headers});
   }
+
+  public Solicitudagente(cust:  Solicitud): Observable<any>{
+    let json = JSON.stringify(cust.archivo);
+    console.log(cust);
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(this.url + '/funcionario/solicitud_agen', cust,{headers});
+  }
+
+  
+  public editarSolicitud(cust: any): Observable<any>{
+    return this.http.post(this.url + '/funcionario/editar_req', cust);
+  }
+
+  public detalleRequerimiento (idRequerimiento: number): Observable<any>{
+    return this.http.get(this.url + '/agente/ticket/' + idRequerimiento);
+  }
+
 
 }

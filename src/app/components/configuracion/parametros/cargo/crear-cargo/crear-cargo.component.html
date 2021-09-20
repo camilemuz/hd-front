@@ -1,0 +1,51 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Añadir Cargo</h2>
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="form" (ngSubmit)="registrar()">
+            <div class="form-row">
+                <div class="col-sm-4">
+                    <label>Código <span class="text-danger">(*)</span>  </label>
+                    <input type="text" name="cod" id="cod" class="form-control"
+                           [ngClass]="{ 'is-invalid': submitted && f.cod.errors }"
+                           formControlName="cod" [(ngModel)]="cargo.cod" style="text-transform:uppercase">
+                    <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                      <div *ngIf="f.cod.errors.required">Código es requerido</div>
+                    </div>
+                  </div>
+                    <div class="col-sm-4">
+                        <label>Cargo <span class="text-danger">(*)</span>  </label>
+                        <input type="text" name="cargo" id="cargo" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.cargo.errors }"
+                            formControlName="cargo" [(ngModel)]="cargo.cargo" style="text-transform:uppercase">
+                        <div *ngIf="submitted && f.cargo.errors" class="invalid-feedback">
+                        <div *ngIf="f.cargo.errors.required">Cargo es requerida</div>
+                        </div>
+                    </div>
+                  
+            </div> 
+            <div class="form-row">
+                <div class="col-sm-4">
+                <label for="prioridad">Prioridad <span class="text-danger">(*)</span></label>
+                  <select name="prioridad" id="prioridad" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.prioridad.errors }"
+                          formControlName="prioridad" [(ngModel)]="cargo.prioridad_id_prioridad">
+                    <option *ngFor="let data of prioridades" [value]="data.id_prioridad">{{ data.prioridad }}</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4 text-right">
+                <button class="btn btn btn-lg" type="button" (click)="limpiar()" style="background-color: #2075ad;">Limpiar</button>
+                <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #2b3047ce;">Registrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -2,30 +2,35 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UsuarioModel} from '../models/usuario.model';
+import { GLOBAL } from '../global';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
-
+  // private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url = GLOBAL.url;
+  
   public menuFuncionario = [
-    { url: '/home', titulo: 'Home'},
+    { url: '/home', titulo: 'Inicio'},
     { url: '/solicitud', titulo: 'Solicitud' },
     { url: '/solicitudes', titulo: 'Solicitudes' },
   ];
   public menuAgente = [
-    { url: '/home', titulo: 'Home' },
-    { url: '/solicitud', titulo: 'Solicitud' },
-    { url: '/ticket', titulo: 'Ticket' }
+    { url: '/home', titulo: 'Inicio' },
+    // { url: '/solicitud', titulo: 'Solicitud' },
+    { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
+    { url: '/ticket', titulo: 'Tickets' }
   ];
   public menuAdmin = [
-    { url: '/home', titulo: 'Home' },
-    { url: '/solicitud', titulo: 'Solicitud' },
-    { url: '/ticket', titulo: 'Ticket' },
+    { url: '/home', titulo: 'Inicio' },
+    // { url: '/solicitud', titulo: 'Solicitud' },
+    { url: '/solicitud-agente', titulo: 'Solicitar Ticket' },
+    { url: '/ticket-admin', titulo: 'Tickets' },
     // { url: '/registro', titulo: 'Registro' },
     { url: '/listado', titulo: 'Usuarios' },
-    { url: '/dashboard', titulo: 'Dashboard' },
+    { url: '/dashboard', titulo: 'Tablero' },
     { url: '/configuracion', titulo: 'Configuración' },
   ];
 
@@ -53,11 +58,22 @@ export class AuthService {
   public index(cust){
     return this.http.post(this.url + '/admin/index', cust);
   }
+
+  public usuarios (): Observable<any>{
+    return this.http.get(this.url + '/parametros/usuarios');
+  }
+
   public store(id: number, usuario: UsuarioModel){
     return this.http.put(this.url + '/admin/store/' + id, usuario);
   }
   public eliminar(usuario: UsuarioModel){
     return this.http.post(this.url + '/admin/eliminar', usuario);
   }
+  
+  public listarAgente(){
+    return this.http.get(this.url + '/agente/listado');
+  }
 
 }
+
+

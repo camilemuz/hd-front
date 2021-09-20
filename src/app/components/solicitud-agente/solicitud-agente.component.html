@@ -1,0 +1,119 @@
+<div class="container">
+    <h2>Solicitar Soporte</h2>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="form" (ngSubmit)="enviar()" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label for="categoria">Tipo Soporte<span class="text-danger">(*)</span></label>
+              <select name="categoria" id="categoria" [(ngModel)]="solicitud.categoria_id" class="form-control"
+                      (ngModelChange)="tipoRequerimiento()" formControlName="categoria">
+                <option *ngFor="let data of categorias" [value]="data.id_categoria">{{ data.categoria }}</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <label for="tipo_solicitud">En<span class="text-danger">(*)</span></label>
+              <select name="tipo_solicitud" id="tipo_solicitud" [(ngModel)]="solicitud.tipo_requerimiento_id_tipo_req"
+                      class="form-control" formControlName="tipo_solicitud">
+                <option *ngFor="let data of tipoRequerimientos" [value]="data.id_tipo_req">{{ data.sub_cat }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-12">
+              <label for="descripcion">Descripción<span class="text-danger">(*)</span></label>
+              <textarea class="form-control" id="descripcion" name="descripcion" [(ngModel)]="solicitud.descripcion"
+                        rows="3" formControlName="descripcion"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label for="municipio">Municipio<span class="text-danger">(*)</span></label>
+              <select name="municipio" id="municipio" [(ngModel)]="solicitud.municipio_id" class="form-control"
+                      (ngModelChange)="sucursal()" formControlName="municipio">
+                <option *ngFor="let data of municipios" [value]="data.id_lugar">{{ data.lugar }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="sucursal">Sucursal<span class="text-danger">(*)</span></label>
+              <select name="sucursal" id="sucursal" [(ngModel)]="solicitud.sucursal_id_sucursal"
+                      class="form-control" formControlName="sucursal">
+                <option *ngFor="let data of sucursales" [value]="data.id_sucursal">{{ data.sucursal }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="departamento">Departamento<span class="text-danger">(*)</span></label>
+              <select name="departamento" id="departamento" [(ngModel)]="solicitud.departamento_id_departamento"
+                      class="form-control" formControlName="departamento">
+                <option *ngFor="let data of departamentos" [value]="data.id_departamento">{{ data.departamento }}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label for="interno">Interno<span class="text-danger">(*)</span></label>
+              <input type="text" class="form-control" [(ngModel)]="solicitud.interno" name="interno"
+                     id="interno" formControlName="interno">
+            </div>
+
+            <div class="col-sm-3">
+                <label for="usuario">Email Usuario<span class="text-danger">(*)</span></label>
+                <select name="usuario" id="usuario" [(ngModel)]="solicitud.usuario_id_usuario" class="selectpicker form-control" data-live-search="true" 
+                        formControlName="usuario" (change)="filtroChangeCat($event)">
+                  <option  *ngFor="let data of usuarios" [value]="data.id_usuario">{{ data.email }}</option>
+                </select>
+                <script>
+                  $('.selectpicker').selectpicker();
+                </script>
+               
+
+                <!-- <input type="text" formControlName="usuario" 
+                name="usuario" 
+                id="usuario"
+                (change)="filtroChangeCat($event)"
+                [(ngModel)]="solicitud.usuario_id_usuario"
+                [ngbTypeahead]="search" 
+                [inputFormatter]="formatter" 
+                [resultTemplate]="rt" 
+                class="form-control" 
+                #instance="ngbTypeahead"
+                /> -->
+
+              </div>
+                <!--Template para autocompletar-->
+                <!-- <ng-template #rt let-r="result" let-t="term">
+                  <ngb-highlight [result]="r.email" [term]="t"></ngb-highlight>
+                </ng-template> -->
+
+
+              <div class="col-sm-4">
+              
+                <label for="arvhivo">Adjuntar un archivo</label>
+                <input name="archivo" id="archivo" [(ngModel)]="solicitud.archivo" type="file"
+                class="form-control" formControlName="archivo" (change)="fileChangeEvent($event)">
+                
+              
+        </div> 
+
+
+
+            </div>
+
+          
+           
+     
+
+          <div class="form-row mt-2">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-right">
+              <button class="btn btn btn-lg" type="button" (click)="limpiar()" style="background-color: #2075ad;">Limpiar</button>
+            <button class="btn btn btn-lg" type="submit" [disabled]="!form.valid" style="background-color: #2b3047ce;">Registrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+

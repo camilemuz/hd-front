@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { GLOBAL } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  // private url: string = 'http://213.169.2.45/mda/help-back/public/api';
+  private url = GLOBAL.url;
+  
   constructor(
     private http: HttpClient
   ) { }
 
-  public listado(){
-    return this.http.post(`${this.url}/agente/tickets`, null);
+  public listado(cust){
+    return this.http.post(`${this.url}/agente/tickets`, cust);
+  }
+
+  public listadoAdmin(cust){
+    return this.http.post(`${this.url}/agente/tickets-admin`, cust);
   }
 
   public listadoFuncionario(cust: any){
@@ -37,5 +44,13 @@ export class TicketService {
 
   public historial(cust: any){
     return this.http.post(`${this.url}/agente/historico`, cust);
+  }
+  
+  public cambiarEstado(cust: any){
+    return this.http.post(`${this.url}/agente/cambiar_estado`, cust);
+  }
+
+  public cambiarAgente(cust: any){
+    return this.http.post(`${this.url}/agente/cambio_agente`, cust);
   }
 }
